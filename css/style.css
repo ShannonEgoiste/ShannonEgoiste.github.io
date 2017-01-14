@@ -36,7 +36,6 @@ h2{
 }
 
 section{
-	border-radius: 20px;
 	padding:20px;
 	color: rgb(255,255,255);
 	background: rgb(255,32,100);
@@ -48,7 +47,6 @@ section{
 }
 
 #testlist{
-	border-radius: 0px 0px 20px 0px;
 	background: #87BCDE;
 	list-style: none;
 }
