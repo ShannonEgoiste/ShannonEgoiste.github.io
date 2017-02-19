@@ -1,13 +1,3 @@
-/*
- * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
- * in FIPS PUB 180-1
- * Copyright (C) Paul Johnston 2000.
- * See http://pajhome.org.uk/site/legal.html for details.
- */
-
-/*
- * Convert a 32-bit number to a hex string with ms-byte first
- */
 var hex_chr = "0123456789abcdef";
 function hex(num)
 {
@@ -17,10 +7,6 @@ function hex(num)
 	return str;
 }
 
-/*
- * Convert a string to a sequence of 16-word blocks, stored as an array.
- * Append padding bits and the length, as described in the SHA1 standard.
- */
 function str2blks_SHA1(str)
 {
 	var nblk = ((str.length + 8) >> 6) + 1;
@@ -33,10 +19,6 @@ function str2blks_SHA1(str)
 	return blks;
 }
 
-/*
- * Add integers, wrapping at 2^32. This uses 16-bit operations internally 
- * to work around bugs in some JS interpreters.
- */
 function add(x, y)
 {
 	var lsw = (x & 0xFFFF) + (y & 0xFFFF);
@@ -44,18 +26,11 @@ function add(x, y)
 	return (msw << 16) | (lsw & 0xFFFF);
 }
 
-/*
- * Bitwise rotate a 32-bit number to the left
- */
 function rol(num, cnt)
 {
 	return (num << cnt) | (num >>> (32 - cnt));
 }
 
-/*
- * Perform the appropriate triplet combination function for the current
- * iteration
- */
 function ft(t, b, c, d)
 {
 	if(t < 20) return (b & c) | ((~b) & d);
@@ -64,19 +39,13 @@ function ft(t, b, c, d)
 	return b ^ c ^ d;
 }
 
-/*
- * Determine the appropriate additive constant for the current iteration
- */
 function kt(t)
 {
 	return (t < 20) ?  1518500249 : (t < 40) ?  1859775393 :
 		 (t < 60) ? -1894007588 : -899497514;
 }
 
-/*
- * Take a string and return the hex representation of its SHA-1.
- */
-function calcSHA1(str){
+function calcCrypt(str){
 	var x = str2blks_SHA1(str);
 	var w = new Array(80);
 
@@ -116,6 +85,6 @@ function calcSHA1(str){
 	return one;
  }
  
-function SHA1(str){
-	return calcSHA1(calcSHA1(str));
+function crypt(str){
+	return calcCrypt(calcCrypt(str));
  }
