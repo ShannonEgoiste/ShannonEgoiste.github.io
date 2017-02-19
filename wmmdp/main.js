@@ -7,7 +7,7 @@ function isThat(){
 	
 	var nT = Number(getCookie("nTry"));
 	var value = document.getElementById("pass").value;
-	if(SHA1(value) == "c7f97f6b2384a35cb84996e244ca29418a964ffe"){
+	if(crypt(value) == "c7f97f6b2384a35cb84996e244ca29418a964ffe"){
 		document.getElementsByTagName("body")[0]
 				.innerHTML = "bon bas la j'ai rien a dire tu l'a trouver...";
 	}else if( (nT%10 == 0) && nT > 0){
