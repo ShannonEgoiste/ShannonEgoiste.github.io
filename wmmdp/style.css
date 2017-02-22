@@ -1,0 +1,31 @@
+*{
+	text-align:center;
+	margin:auto;
+	transition: width 0.5s;
+}
+
+h1{
+	font-variant:small-caps;
+}
+
+#pass{
+	text-align:left;
+	border: 1px solid #AAAAAA;
+	width:100px;
+}
+
+#pass:focus{
+	width:200px;
+}
+
+#pass:hover{
+	box-Shadow: 0px 0px 5px 0px #72a7d3;
+}
+
+p{
+	margin:10px;
+}
+
+#nTry p{
+	text-align:left;
+}
