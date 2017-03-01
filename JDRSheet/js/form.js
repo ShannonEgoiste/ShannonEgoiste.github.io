@@ -65,7 +65,8 @@ function winText(){
 
 function reinitPhoto(){
 	document.getElementById("photo").innerHTML="<input type=\"text\" id=\"url\" placeholder=\"url Image\">";
-	document.getElementById("photo").innerHTML+="<input type=\"button\" id=\"submit\" value=\"envoyer\" onclick=\"loadPhoto()\">";							
+	document.getElementById("photo").innerHTML+="<input type=\"button\" id=\"submit\" value=\"envoyer\" onclick=\"loadPhoto()\">";
+	document.getElementById("photo").style.backgroundImage = null;							
 }
 
 function reset(){
