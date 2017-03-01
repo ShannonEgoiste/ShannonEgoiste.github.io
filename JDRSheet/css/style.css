@@ -1,0 +1,340 @@
+header{
+	padding:20px;
+	background-color:#1B2128;
+	color:white;
+}
+
+.backgroundImage{
+	filter :blur(7px) grayscale(25%) brightness(20%);
+	z-index:-90;
+	position:fixed;
+	left:-10px;
+	width:120%;
+	height:120%;
+}
+
+header a{
+	margin:auto;
+}
+
+header h1{
+	font-size:32px;
+	border-bottom:solid 1px;
+	width:128px;
+	text-align:center;
+}
+header h2{
+	font-size:12px;
+	text-align:center;
+	width:128px;
+}
+
+header a:visited, header a{
+	color:white;
+	text-decoration:none;
+}
+
+#container{
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:center;
+}
+
+#schoolName h1{
+	width:164px;
+	font-size:32px;
+	border-bottom:solid 1px;
+}
+
+#schoolName h2{
+	font-size:12px;
+}
+
+#schoolName{
+	position: relative;
+	width:164px;
+}
+
+#card #schoolName{
+	left:340px;
+	top:-40px;
+}
+
+#carac #schoolName{
+	left:360px;
+	top:-30px;
+}
+
+#card{
+	color:white;
+	box-shadow: 8px 8px 10px #000;
+	background-image:url(../img/card.png);
+	margin:10px;
+	padding:20px;
+	border-radius:16px;
+	border:none;
+	width:492px;
+	min-width:492px;
+	height:302px;
+	min-height:302px;
+}
+
+table{
+	text-align:left;
+	font-size: 16px;
+}
+
+#card input[type="text"]{
+	color:white;
+	font-size:20px;
+	margin:5px;
+	border:none;
+	border-bottom:1px solid #FFF;
+	background-color:transparent;
+}
+
+#nom{
+	text-transform:uppercase;
+	width:128px;
+}
+
+#prenom{
+	text-transform :capitalize;
+	width:128px;
+}
+
+#age{
+	width:32px;
+}
+
+#classe{
+	width:64px;
+}
+
+#card input[type="text"]:focus{
+	margin:5px;
+	border:none;
+	border-bottom:1px solid #FFF;
+	outline:none;
+}
+
+#url{
+	width:96px;
+}
+
+*{
+	font-family:serif;
+	padding:0;margin:0;
+	//font-weight:normal;
+}
+
+#photo{
+	text-align:center;
+	border:1px solid #f5c960;
+	border-radius:16px;
+	background-size:128px 128px;
+	padding:0px;
+	height:128px;
+	width:128px;
+	margin-bottom:20px;
+}
+
+#caracContain{
+	display:flex;
+	justify-content:space-around;
+}
+
+#carac{
+	background-color:#1B2128;
+	width:532px;
+	min-width:532px;
+	height:342px;
+	min-height:342px;
+	border-radius:16px;
+	box-shadow: 8px 8px 10px #000;
+	margin:10px;
+	color:white;
+}
+
+#carac table{
+	margin:10px 10px;
+	border-collapse:collapse;
+}
+
+#carac th{
+	padding:0px 4px;
+	border:1px solid;
+}
+
+#ri,#rs{
+	text-align:center;
+}
+
+#titleCardBack{
+	font-family:sans-serif;
+	text-align:center;
+	color:#F5C960;
+	margin:4px 20px;
+	font-size:22px;
+}
+
+#line{
+	border-bottom:4px solid #F5C960;
+	width:100%;
+}
+
+#carac legend{
+	margin-left:20px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#carac fieldset{
+	border-radius:16px;
+	margin:10px
+}
+
+#carac input[type="text"]{
+	color:white;
+	font-size:16px;
+	border:none;
+	height:26px;
+	background-color:transparent;
+}
+
+input[type="button"], input[type="range"]{
+	cursor:pointer;
+}
+
+#carac input[type="number"]{
+	color:white;
+	font-size:16px;
+	border:none;
+	height:32px;
+	background-color:transparent;
+	text-align:center;
+	width:64px;
+}
+
+#carac input[type="range"]{
+	width:160px;
+}
+
+#carac input:focus{
+	border:none;
+	outline:none;
+}
+
+#saveLoad{
+	border-top: solid 2px #FFF;
+	background-color:#1B2128;
+	box-shadow: 0px 5px 10px #000;
+	margin-bottom:40px;
+}
+
+#saveLoad input{
+	margin:10px;
+	border-radius:8px;
+	padding:5px 10px;
+	transition:0.5s;
+	outline:none;
+	color:white;
+	width:160px;
+}
+
+#saveLoad input.sav{
+	background-color:#F12EA5;
+    border: 2px solid #F12EA5;
+}	
+#saveLoad input.sav:hover{
+    border: 2px solid #F12EA5;
+	color:#F12EA5;
+}
+
+#saveLoad input.reset{
+	background-color:#961515;
+    border: 2px solid #961515;
+}	
+#saveLoad input.reset:hover{
+    border: 2px solid #961515;
+	color:#961515;
+}
+
+#saveLoad input.load{
+	background-color:#F4A742;
+    border: 2px solid #F4A742;
+}
+#saveLoad input.load:hover{
+    border: 2px solid #F4A742;
+	color:#F4A742;
+}
+
+#saveLoad input:hover{
+	background-color:#1B2128;
+	cursor: pointer;
+}
+
+
+#saveLoad input:active{
+	transition:0s;
+	box-shadow: 0 0 5px 2px #FFF;
+}
+
+#saveLoadText{
+	position: fixed;
+	z-index: 90;
+	top:30%;
+	background-color:white;
+	box-shadow: 5px 5px 10px;
+	border-radius: 0px 10px 10px 0px;
+}
+
+#saveLoadText input[type="button"]{
+	background-color:#F4A742;
+    border: 2px solid #F4A742;
+	margin:10px 10px;
+	border-radius:8px;
+	padding:5px 10px;
+	transition:0.5s;
+	outline:none;
+	color:white;
+	width:160px;
+}
+
+#saveLoadText input:hover{
+	background-color:white;
+	cursor: pointer;
+    border: 2px solid #F4A742;
+	color:#000;
+}
+
+#closeB{
+	position:relative;
+	top:4px;
+	border-radius: 0px 0px 8px 0px;
+	color:white;
+	background-color:#500;
+	transition:1s;
+	padding: 4px 4px;
+	cursor:pointer;
+}
+
+#margSavTex{
+	padding: 10px 4px;
+}
+
+#confirme{
+	margin:20px;
+}
+
+#saveLoadText textarea{
+	margin:20px;
+	margin-bottom:0px;
+}
+
+#closeB:hover{
+	background-color:#F00;
+	cursor:pointer;
+}
+
+

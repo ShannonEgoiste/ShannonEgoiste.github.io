@@ -1,0 +1,87 @@
+﻿<!doctype html>
+<html>
+	<head>
+        <meta charset="utf-8" />
+		<link rel="stylesheet" href="css/style.css" />
+        <title>KumoZakura JdR</title>
+	</head>
+	<body onload="autoCharge()">
+			<img class="backgroundImage"src="img/another.jpg"></img>
+			<div id="saveLoadText"></div>
+			<header>
+				<a href="."><h1>雲桜</h1><h2>KumoZakura</h2></a>
+			</header>
+			<div id="saveLoad">
+				<input type="button" class="sav" value="Sauvegarder (Cookie)" onclick="saveCookie()"> 
+				<input type="button" class="sav" value="Sauvegarder (Texte)" onclick="saveText()"> 
+				
+				<input type="button" class="load" value="Charger (Cookie)" onclick="loadCookie()"> 
+				<input type="button" class="load" value="Charger (Texte)" onclick="loadText()"> 
+				
+				<input type="button" class="reset" value="reset" onclick="reset()"> 
+				</br>
+			</div>
+			<div id='container'>	
+					<div id="card">
+						<table> 
+							<tbody>
+								<tr><div id="photo">
+										<input type="text" id="url" placeholder="url Image">
+										<input type="button" id="submit" value="envoyer" onclick="loadPhoto()">
+									</div></tr>
+								<tr><th><label for="nom">NOM : </label></th><th><input type="text" id="nom"></th></tr>
+								<tr><th><label for="prenom">Prenom : </label></th><th><input type="text" id="prenom"></th></tr>
+								<tr><th><label for="age">Age : </label></th><th><input type="text" id="age" maxlength="2"> ans</th></tr>
+								<tr><th><label for="classe">Classe : </label></th><th><input type="text" id="classe"></th></tr>
+							</tbody>
+						</table>
+						
+						<div id="schoolName"><h1>雲桜学校</h1><h2>Kumozakura Gakkō</h2></div>
+					</div>	
+					
+					<div id="carac">
+						<h1 id="titleCardBack">Info Personnage</h1>
+						<div id="line"></div>
+						<div id="caracContain">
+							<div id="infoLeft">
+								<fieldset><legend>Santé</legend>
+									<table>
+										<tbody>
+											<tr><th><label for="infect">Infection : </label></th><th><input oninput="labRang(0)" type="range" id="infect" min="0" max="20" value="0"></th><th id="ri">00</th></tr>
+											<tr><th><label for="stress">Stress : </label></th><th><input oninput="labRang(1)" type="range" id="stress" min="0" max="20" value="0"></th><th id="rs">00</th></tr>
+										</tbody>
+									</table>
+								</fieldset>
+								
+								<fieldset id="cl"><legend>Bonus</legend>
+									<table>
+										<tbody>
+											<tr><th><label for="club">Club :</label></th><th><input type="text" id="club"></th></tr>
+											<tr><th><label for="sport">Sport :</label></th><th><input type="text" id="sport"></th></tr>
+											<tr><th><label for="cuis">Cuisine :</label></th><th><input type="text" id="cuis"></th></tr>
+											<tr><th><label for="meta">Méta :</label></th><th><input type="text" id="meta"></th></tr>
+										</tbody>
+									</table>
+								</fieldset>
+							</div>
+							<div id="infoRight">
+								<fieldset><legend>Caractéristique</legend>
+									<table>
+										<tbody>
+											<tr><th><label for="intel">Inteligence : </label></th><th><input type="number" id="intel" min="0" max="100" value="50"></th></tr>
+											<tr><th><label for="phys">Physique : </label></th><th><input type="number" id="phys" min="0" max="100" value="50"></th></tr>
+											<tr><th><label for="perc">Perception : </label></th><th><input type="number" id="perc" min="0" max="100" value="50"></th></tr>
+											<tr><th><label for="tech">Technique : </label></th><th><input type="number" id="tech" min="0" max="100" value="50"></th></tr>
+											<tr><th><label for="soc">Sociale : </label></th><th><input type="number" id="soc" min="0" max="100" value="50"></th></tr>
+										</tbody>
+									</table>
+								</fieldset>
+							</div>
+						</div>
+						<div id="schoolName"><h1>雲桜学校</h1><h2>Kumozakura Gakkō</h2></div>
+					</div>
+			</div>
+			<script type="text/javascript" src="js/form.js"></script>
+			<script type="text/javascript" src="js/cookie.js"></script>
+	</body>
+</html>
