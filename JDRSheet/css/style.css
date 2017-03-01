@@ -97,6 +97,9 @@ table{
 	text-transform:uppercase;
 	width:128px;
 }
+#club, #sport, #cuis, #meta, #meta2{
+text-transform :capitalize;
+}
 
 #prenom{
 	text-transform :capitalize;
