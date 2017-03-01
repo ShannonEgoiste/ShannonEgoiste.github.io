@@ -182,7 +182,7 @@ function loadCookie(){
 function confirmeLoad(){
 	closeSave();
 	var tab = [];
-	for(var i=0;i< 14;i++){
+	for(var i=0;i< tab.length;i++){
 		tab[i] = getCookie("JdRInfo"+tD(i));
 	}
 	dataSet(tab);
