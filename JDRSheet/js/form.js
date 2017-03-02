@@ -153,15 +153,6 @@ function saveCookie(){
 	x.innerHTML+="<input type=\"button\" id=\"confirme\" value=\"confirmer ?\" onclick=\"confirme()\">"
 }
 
-
-
-
-
-
-
-
-
-
 function confirme(){
 	closeSave();
 	var personne = saveData();
@@ -190,7 +181,7 @@ function confirmeLoad(){
 
 
 function autoCharge(){
-	if(checkCookie("JdRInfo00")){
+	if(checkCookie("JdRInfo16")){
 		confirmeLoad();
 	}
 }
