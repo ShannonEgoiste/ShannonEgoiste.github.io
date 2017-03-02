@@ -82,8 +82,9 @@ function confirmeReset(){
 	reinitPhoto();  
 	var tab = [];   
 	tab[0] = "";    
-	tab[1] = "";    
-	tab[3] = 0;     
+	tab[1] = "";  
+	tab[2] = 0;     
+	tab[3] = "";     
 	tab[4] = "";    
 	tab[5] = 0;    
 	tab[6] = 0;    
@@ -112,7 +113,7 @@ function loadText(){
 function submitLoad(){
 	var tab = document.getElementById("textboxsl").value.split(";");
 	for(var i = 0 ; i < tab.length; i++){
-		console.log(tab[i]);
+		//console.log(tab[i]);
 	}
 	
 	dataSet(tab);
@@ -161,6 +162,7 @@ function confirme(){
 	if(info == null || info.length <1) info = " ";
 	if(i<personne.length-1) info+=";";
 		setCookie("JdRInfo"+tD(i),info,9000);
+		console.log(getCookie("JdRInfo"+tD(i)));
 	}
 }
 
@@ -173,8 +175,10 @@ function loadCookie(){
 function confirmeLoad(){
 	closeSave();
 	var tab = [];
+	console.log("test");
 	for(var i=0;i< 17;i++){
 		tab[i] = getCookie("JdRInfo"+tD(i));
+		console.log(getCookie("JdRInfo"+tD(i)));
 	}
 	dataSet(tab);
 }
