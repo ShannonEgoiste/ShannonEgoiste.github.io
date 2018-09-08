@@ -1,0 +1,38 @@
+*{padding:0;margin:0;}
+
+body{
+	font-family:Verdana;
+	background-color:#000;
+}
+
+#song{
+	margin:25px;
+	border: 2px solid #FFF;
+	border-radius:50px;
+	box-shadow: 5px 5px 2px #000;
+	padding: 25px;
+	background-color:rgba(0,8,16,0.8);
+	color:#FFF;
+}
+
+#animeTitle{
+	-webkit-text-stroke: 1px white;
+	font-size:30px;
+	font-weight:bold;
+	margin:10px 20px;
+}
+
+#title{
+	font-size:30px;
+	margin:10px 20px;
+	border-bottom: 1px solid #FFF;
+}
+
+#artist{
+	font-size:16px;
+	color:#888;
+}
+
+#lyrics{
+	margin: 0px 40px;
+}
