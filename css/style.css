@@ -1,117 +1,65 @@
+*{padding:0;margin:0;}
+
+body{
+	background-color:#555;
+	font-family:Amaranth;
+}
+
+#listContainer {
+	border-radius:10px;
+	width:60%;
+	position: absolute;
+	top: 50%; left: 50%;
+	transform: translate(-50%, -50%);
+	background-color:#000;
+	overflow:hidden;
+	border:4px solid #FFF;
+}
+
+#TTGLBG{
+	position:fixed;
+	top:50%;
+	right:0%;
+	min-height: 100%;
+	min-width:100%;
+	height: auto;
+	width: auto;
+    z-index: -100;
+	transform:translate(0,-50%);
+	filter:blur(10px) brightness(0.2);
+}
+
+#listContainer li{
+	text-align:center;
+	padding:15px;
+	list-style-type: none;
+	border-top: 1px solid #555;
+	transition:0.3s ease;
+	background-color:#444;
+}
+
+#listContainer li:hover{
+	list-style-type: none;
+	transition:0.3s ease;
+	cursor:pointer;
+	background-color:#555;
+	border-radius: 20px 0px 0px 20px;
+}
+
 h1{
-    border-bottom: 2px solid #FFFFFF;
-	color:#FFFFFF;
+	font-size:20px;
+	color:#FFF;
+	margin:15px;
 }
 
 h2{
-	margin-left:30px;
-    border-bottom: 1px solid #FFFFFF;
+	font-size:16px;
+	margin:15px;
+	color:#888;
 }
 
-.navigation {
-	list-style: none;
-	margin: 0;
-	background: #004E98;
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: flex-end;
+#listContainer a:visited, #listContainer a{
+	color:#FFF;
+	text-decoration:none;
+	font-weight:bold;
 }
-
-.navigation a {
-	text-decoration: none;
-	display: block;
-	padding: 1em;
-	color: rgb(255,255,255);
-}
-
-.navigation a:hover {
-	border-radius: 20px 0px 0px 5px;
-	background: #00A2EF;
-}
-
-#contenu{
-	display:flex; 
-	height:100%;
-	flex-basis:fit-content;
-}
-
-section{
-	padding:20px;
-	color: rgb(255,255,255);
-	background: rgb(255,32,100);
-}
-
-#test{
-	justify-content:center;
-	display:flex;
-}
-
-#testlist{
-	background: #87BCDE;
-	list-style: none;
-}
-
-#testlist a{
-	display: block;
-	text-decoration: none;
-	padding:10px;
-	color:rgb(50,50,50);
-}
-
-#testlist a:hover {
-	border-radius: 20px 0px 0px 5px;
-	background: #805E73;
-}
-
-header{	
-	background-size: cover;
-	padding:80px;
-	background-image:url(image.jpg);
-    background-position: center;
-}
-
-footer{
-	color:#FFFFFF;
-	padding:5px;
-	background:#254441;
-	text-align:right;
-}
-
-.background-image{
-	z-index: -1;
-	position:fixed;
-	left:0;
-	right:0;
-	width:100%;
-	height:100%;
-	background-image:url(image.jpg);
-}
-
-html, body {
-	font-family:sans-serif;
-	margin:0%;
-}
-
-table {
-	margin:auto;
-	border-collapse: collapse;
-}
-
-table, tr ,td{
-	border: 1px solid black;
-	padding: 15px;
-	text-align: center;
-	background:rgb(255,255,255);
-	color:#000000;
-	width:50%;
-}
-
-
-th {
-	border: 1px solid black;
-	background:rgb(163, 17, 85);
-}
-
-
-
-
