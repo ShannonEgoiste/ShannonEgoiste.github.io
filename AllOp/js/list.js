@@ -129,7 +129,7 @@ var allGundamOp = [
 	]
 },{
 	"anime":"Kidou Butouden G Gundam",
-	"image":"g.jpg",
+	"image":"G.jpg",
 	"song" : [ 
 		{
 			"title" : "Flying in the Sky",
