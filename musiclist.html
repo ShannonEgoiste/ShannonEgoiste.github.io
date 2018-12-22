@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>musique</title>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script>
+		var openInstru = 0;
+		var openVocal = 0;
+		var openRwby = 0;
+	
+		function instrumental(){
+			if(openInstru == 1){
+				openInstru = 0;
+				$("#instrumental").html("");
+				return;
+			}
+			
+			openInstru = 1;
+			$("#instrumental").html(
+				'<iframe src="https://www.youtube.com/embed/jfVG-fyMkNU"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/kKCCNMyKNJc"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/hrLvoyFpLGc"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/4jIXcSxBP7U"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/i2AJfEEvS3Q"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/uyeXWOrrZMk"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/NROzG-IGNgs"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/7Dj1QYHir4A"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/lnBcJHOkejI"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/JEkTXBrSklE"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/5ejTIgXexyg"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/F9ee_Ez6tFk"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/kpiEHxgLN-E"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/rCsg32CnN0g"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/dGtTeDcSnmk"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/w0IFXsaF39w"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/aRoXYjLs6as"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/Z5jyEphbGo4"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/d7vcJKhzBh4"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/ytHjdArnPJQ"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/NAYGOW1t6tE"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/Ws3kY2LNPbM"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/vRV0jtAj0Ns"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/1zoNcVWPN1Q"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/dd46nIoKJq8"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/mO7FDs_q_og"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/c978-6BgEtk"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/MP9rJdxmuQU"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/m1S6Yip4NE8"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/Whhj7q2Rmmk"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/LweQnklPujQ"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/9SBlKpRyXWU"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/581yuUMGQPE"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/s9jtcJAZJ5A"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/Yt1PT4PL7ZU"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/sruL8SNB32c"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/oxZlJGtFGcw"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/-1Z24slVb5U"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/Xi8kiTqARFg"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/Th2jeYakyAY"></iframe>');
+			$("#vocal").html("");
+			$("#rwby").html("");
+		}
+
+		function vocal(){
+			if(openVocal == 1){
+				openVocal = 0;
+				$("#vocal").html("");
+				return;
+			}
+			
+			openVocal = 1;
+			
+			$("#instrumental").html("");
+			$("#rwby").html("");
+			$("#vocal").html(
+				'<iframe src="https://www.youtube.com/embed/SdqvZPiKYik"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/KRZhbQuG1n8"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/YqFHIU4qc-k"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/YyZdbDEgK50"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/-86soc8lJmw"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/RITep593A2U"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/QkW7Mnf9zXU"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/cNplZrRSjeI"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/fRv40o_3AxY"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/N18nwhwu-CM"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/LxZZ48X6y4c"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/LXp0v93ZRTs"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/kahscNQIUhE"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/yb83fmI47KQ"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/EIVgSuuUTwQ"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/zTmlrZw6Ctc"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/_fRuo7PiP9A"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/GTYyR-OFbq0"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/gF7eXpn2-MM"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/dBV8Pd6FMtw"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/uM032eA9HD0"></iframe>'+ 
+				'<iframe src="https://www.youtube.com/embed/ZauyTmbTVPE"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/ZxnqSTzq6-w"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/PqXPW0oBKgg"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/yOo8oJlWwnU"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/hE-_7kSdNPY"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/n7FIDpn23sE"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/uEjXgqE4UDM"></iframe>'+	
+				'<iframe src="https://www.youtube.com/embed/QgeAITKGrAw"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/oRVrKKYXOGk"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/jmKRgqWGrWc"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/QXhCMbLsT7I"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/rkdudijS5Ik"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/i8wghCdMncU"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/QalWKRmjHJA"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/UFyzTtKNzYI"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/hng0_OyE9os"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/Upv7kEEKrac"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/dJzqshnQNvg"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/sw1FBEs13KU"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/V5MUdahOnPI"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/eveEcvLSG64"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/PtzUVTA_CBE"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/SYtLk2GwLLs"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/-uoZEx27LPA"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/rsmPfRMtcP0"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/kbn_Nre-hC8"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/T9aTZQi8cMg"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/_1yotSpdaxo"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/RJcCF4QgRlQ"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/jvk_UQC-4mY"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/h9ngEjf-Pro"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/FyT2mx8vrE8"></iframe>');
+		}
+		
+		function rwby(){
+			if(openRwby	== 1){
+				openRwby = 0;
+				$("#rwby").html("");
+				return;
+			}
+			
+			openRwby = 1;
+			$("#rwby").html(
+				'<iframe src="https://www.youtube.com/embed/DrC_n5hUDKs"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/KdWCLT7kccY"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/euuxPokAeIA"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/iTZJdHr2z_o"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/Wwohhs3LvRQ"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/7o_LmTfARno"></iframe>'+
+				'<iframe src="https://www.youtube.com/embed/Abf8CQ_dxzc"></iframe>');
+			$("#vocal").html("");
+			$("#instrumental").html("");
+			
+		}
+		
+
+	</script>
+</head>
+<body>
+<h1 onclick='instrumental()'>instrumental</h1>
+<div id='instrumental'></div>
+<h1 onclick='vocal()'>vocal</h1>
+<div id='vocal'></div>
+<h1 onclick='rwby()'>RWBY</h1>
+<div id='rwby'></div>
+</body>
+</html>
