@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>world guess</title>
+	<script src='jquery.js'></script>
+	<style>
+		*{padding:0;margin:}
+	
+		#modal{
+			text-align:center;
+			margin: 0 auto;
+			width: 512px;
+			border-radius: 3px;
+			border:1px solid #000;
+		}
+		
+		button.wrong{
+			background-color:#F33!important;
+		}
+		
+		button.good{
+			background-color:#5F6!important;
+		}
+		
+		button{	
+			cursor:pointer;
+			vertical-align: top;
+			border-radius: 3px;
+			margin:10px 5px;padding:10px;
+			border:none;
+			outline:none;
+			background-color:#EEE;
+			border-radius;10px;
+			transition:0.5s ease;
+		}
+		
+		button:hover{
+			background-color:#CCC;
+			transition:0.5s ease;
+			color:#FFF;
+		}
+		
+		button:active{
+			background-color:#333;
+			outline:none;
+		}
+		.score{
+			position:fixed;
+			top:10px;
+			left:10px;
+			padding:10px;
+			border-radius:10px;
+			border:1px solid #000;
+		}
+		
+		.masquerreponse{
+			visibility:hidden;
+		}
+		
+		
+	</style>
+	
+</head>
+<body>
+	<div id='score'>score : 0/0</div>
+
+	<div id='modal'>
+		<div id='question'>
+			
+		</div>
+		<hr>
+		<div id='reponse'>
+		
+		</div>
+		<a style='padding:10px' href='#' onclick='afficherQCM()'>afficher QCM</a>
+	</div>
+	
+	<script src='world.js'></script>
+	<script>
+	var score = 0;
+	var maxscore = 0;
+	$(document).ready(function(){quizchoose();});
+	
+	function rand(min,max) {min = Math.ceil(min);return Math.floor(Math.random() * (Math.floor(max) - min)) + min;}
+	function shuffleArray(array) {
+		for (var i = array.length - 1; i > 0; i--) {
+			var j = Math.floor(Math.random() * (i + 1));var temp = array[i];array[i] = array[j];array[j] = temp;
+		}
+	}
+	
+	function goodchoice(btn){
+		$(btn).addClass("good");
+		setTimeout(function(){
+		$(btn).removeClass("good");
+		score++;
+		maxscore++;
+		$("#score").html("score : "+score+"/"+maxscore);
+		quizchoose();
+		},750);
+	}
+	
+	function afficherQCM(){$("#reponse").removeClass("masquerreponse");}
+	
+	function wrongchoice(btn){
+		$(btn).addClass("wrong");
+	
+		setTimeout(function(){
+		$(btn).removeClass("wrong");
+		maxscore++;
+		$("#score").html("score : "+score+"/"+maxscore);
+		quizchoose();
+		},750);
+	}
+	function quizchoose(){
+		var choose = rand(0,2);
+		if(choose == 0)
+			quiz("la","capitale");
+		if(choose == 1)
+			quiz("le","drapeau");
+	}
+	
+	function quiz(article,question){
+		$("#question").html("");$("#reponse").html("");
+		$("#reponse").addClass("masquerreponse");
+		var choicecountry = rand(0,world.length-1);
+		var country = world[choicecountry];
+		
+		$("#question").append("<h5>quel est "+article+" "+question+" "+country["article"]+country["nom"]+" ?</h5>");
+		
+		var listechoix = [];
+		
+		listechoix.push(country[question]);
+		while(listechoix.length != 5){
+			var testc = world[rand(0,world.length-1)];
+			if(listechoix.indexOf(testc[question]) == -1){
+					listechoix.push(testc[question]);
+			}
+		}
+		
+		shuffleArray(listechoix);
+		
+		for(var i = 0 ; i < 5;i++){
+			var valeur = listechoix[i];
+			var goodanswer = 0;
+			if(valeur==country[question]) goodanswer=1;
+			
+			if(question=='drapeau') valeur = "<img width='100px' src='https://upload.wikimedia.org/wikipedia/commons/"+valeur+"'></img>";
+			
+			if(goodanswer)
+				$("#reponse").append("<button onclick='goodchoice(this)'>"+valeur+"</button>");
+			else
+				$("#reponse").append("<button onclick='wrongchoice(this)'>"+valeur+"</button>");
+		}
+	}
+		
+	</script>
+</body>
+</html>
