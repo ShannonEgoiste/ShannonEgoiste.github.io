@@ -510,8 +510,339 @@ var world = [
 	"armoirie":"commons/5/58/Coat_of_arms_of_Cuba.svg"
 },
 {
+	"nom":"danemark",
+	"article":"du ",
+	"capitale":"copenhague",
+	"langue":["danois"],
+	"monnaie":["couronne danoise"],
+	"code_iso":"DNK, DK",
+	"drapeau":"9/9c/Flag_of_Denmark.svg",
+	"armoirie":"commons/c/c6/National_Coat_of_arms_of_Denmark.svg"
+},
+{
+	"nom":"djibouti",
+	"article":"de ",
+	"capitale":"djibouti",
+	"langue":["arabe","français","afar","somali"],
+	"monnaie":["franc djibouti"],
+	"code_iso":"DJI, DJ",
+	"drapeau":"3/34/Flag_of_Djibouti.svg",
+	"armoirie":"commons/8/8d/Emblem_of_Djibouti.svg"
+},
+{
+	"nom":"république dominicaine",
+	"article":"de la ",
+	"capitale":"saint-domingue",
+	"langue":["espagnol"],
+	"monnaie":["pseo dominicain"],
+	"code_iso":"DOM, DO",
+	"drapeau":"9/9f/Flag_of_the_Dominican_Republic.svg",
+	"armoirie":"commons/2/26/Coat_of_arms_of_the_Dominican_Republic.svg"
+},
+{
+	"nom":"dominique",
+	"article":"de la ",
+	"capitale":"roseau",
+	"langue":["anglais"],
+	"monnaie":["dollar des caraïbes orientales"],
+	"code_iso":"DMA, DM",
+	"drapeau":"c/c4/Flag_of_Dominica.svg",
+	"armoirie":"commons/2/26/Coat-of-arms-of-Dominica.svg"
+},
+{
+	"nom":"égypte",
+	"article":"de l'",
+	"capitale":"le caire",
+	"langue":["arabe"],
+	"monnaie":["livre égyptienne"],
+	"code_iso":"EGY, EG",
+	"drapeau":"f/fe/Flag_of_Egypt.svg",
+	"armoirie":"commons/5/5e/Coat_of_arms_of_Egypt.svg"
+},
+{
+	"nom":"émirats arabes unis",
+	"article":"des ",
+	"capitale":"abou dabi",
+	"langue":["arabe"],
+	"monnaie":["dirham des émirats arabes unis"],
+	"code_iso":"ARE, AE",
+	"drapeau":"c/cb/Flag_of_the_United_Arab_Emirates.svg",
+	"armoirie":"commons/e/eb/Emblem_of_the_United_Arab_Emirates.svg"
+},
+{
+	"nom":"équateur",
+	"capitale":"quito",
+	"article":"de l'",
+	"langue":["espagnol","kichwa","shuar"],
+	"monnaie":["dollar américain"],
+	"code_iso":"ECU, EC",
+	"drapeau":"e/e8/Flag_of_Ecuador.svg",
+	"armoirie":"commons/e/e7/Coat_of_arms_of_Ecuador.svg"
+},
+{
+	"nom":"érythrée",
+	"capitale":"asmara",
+	"article":"de l'",
+	"langue":["tigrigna","arabe","anglais"],
+	"monnaie":["nakfa"],
+	"code_iso":"ERI, ER",
+	"drapeau":"2/29/Flag_of_Eritrea.svg",
+	"armoirie":"commons/3/36/Emblem_of_Eritrea_%28or_argent_azur%29.svg"
+},
+{
+	"nom":"espagne",
+	"capitale":"madrid",
+	"article":"de l'",
+	"langue":["espagnol"],
+	"monnaie":["euro"],
+	"code_iso":"ESP, ES",
+	"drapeau":"9/9a/Flag_of_Spain.svg",
+	"armoirie":"commons/8/85/Escudo_de_Espa%C3%B1a_%28mazonado%29.svg"
+},
+{
+	"nom":"estonie",
+	"article":"de l'",
+	"capitale":"tallinn",
+	"langue":["estonien"],
+	"monnaie":["euro"],
+	"code_iso":"EST, EE",
+	"drapeau":"8/8f/Flag_of_Estonia.svg",
+	"armoirie":"commons/2/2b/Coat_of_arms_of_Estonia.svg"
+},
+{
+	"nom":"eswatini (swaziland)",
+	"article":"de l'",
+	"capitale":"mbabane",
+	"langue":["swati","anglais"],
+	"monnaie":["lilangeni"],
+	"code_iso":"SWZ, SZ",
+	"drapeau":"f/fb/Flag_of_Eswatini.svg",
+	"armoirie":"commons/4/4d/Coat_of_arms_of_Swaziland.png"
+},
+{
+	"nom":"états-unis",
+	"article":"des ",
+	"capitale":"washington D.C.",
+	"langue":["anglais","espagnol","hawaïen","français"],
+	"monnaie":["dollar américain"],
+	"code_iso":"USA, US",
+	"drapeau":"e/e2/Flag_of_the_United_States_%28Pantone%29.svg",
+	"armoirie":"commons/5/5c/Great_Seal_of_the_United_States_%28obverse%29.svg"
+},
+{
+	"nom":"éthiopie",
+	"capitale":"addis-abeba",
+	"article":"de l'",
+	"langue":["amharique"],
+	"monnaie":["birr"],
+	"code_iso":"ETH, ET",
+	"drapeau":"7/71/Flag_of_Ethiopia.svg",
+	"armoirie":"commons/3/3f/Emblem_of_Ethiopia.svg"
+},
+{
+	"nom":"fidji",
+	"capitale":"suva",
+	"article":"des ",
+	"langue":["anglais","fidjien","hindi des fidji"],
+	"monnaie":["dollar de fidji"],
+	"code_iso":"FJI, FJ",
+	"drapeau":"b/ba/Flag_of_Fiji.svg",
+	"armoirie":"commons/c/c7/Coat_of_arms_of_Fiji.svg"
+},
+{
+	"nom":"finlande",
+	"capitale":"helsinki",
+	"article":"de la ",
+	"langue":["finnois","suédois"],
+	"monnaie":["euro"],
+	"code_iso":"FIN, FI",
+	"drapeau":"b/bc/Flag_of_Finland.svg",
+	"armoirie":"commons/a/ae/Coat_of_arms_of_Finland.svg"
+},
+{
+	"nom":"france",
+	"capitale":"paris",
+	"article":"de la ",
+	"langue":["français","franc pacifique"],
+	"monnaie":["euro"],
+	"code_iso":"FRA, FR",
+	"drapeau":"c/c3/Flag_of_France.svg",
+	"armoirie":"commons/b/b7/Armoiries_r%C3%A9publique_fran%C3%A7aise.svg"
+},
+{
+	"nom":"gabon",
+	"capitale":"libreville",
+	"article":"du ",
+	"langue":["français"],
+	"monnaie":["franc cfa"],
+	"code_iso":"GAB, GA",
+	"drapeau":"0/04/Flag_of_Gabon.svg",
+	"armoirie":"commons/7/77/Coat_of_arms_of_Gabon.svg"
+},
+{
+	"nom":"gambie",
+	"capitale":"banjul",
+	"article":"de la ",
+	"langue":["anglais"],
+	"monnaie":["dalasi"],
+	"code_iso":"GMB, GM",
+	"drapeau":"7/77/Flag_of_The_Gambia.svg",
+	"armoirie":"commons/d/d4/Coat_of_arms_of_The_Gambia.svg"
+},
+{
+	"nom":"géorgie",
+	"capitale":"tbilissi",
+	"article":"de la ",
+	"langue":["géorgien"],
+	"monnaie":["lari"],
+	"code_iso":"GEO ,GE",
+	"drapeau":"0/0f/Flag_of_Georgia.svg",
+	"armoirie":"commons/9/94/Greater_coat_of_arms_of_Georgia.svg"
+},
+{
+	"nom":"ghana",
+	"capitale":"accra",
+	"article":"du ",
+	"langue":["anglais"],
+	"monnaie":["cedi"],
+	"code_iso":"GHA, GH",
+	"drapeau":"1/19/Flag_of_Ghana.svg",
+	"armoirie":"commons/5/59/Coat_of_arms_of_Ghana.svg"
+},
+{
+	"nom":"grèce",
+	"capitale":"athènes",
+	"article":"de la ",
+	"langue":["grec"],
+	"monnaie":["euro"],
+	"code_iso":"GRC, GR",
+	"drapeau":"5/5c/Flag_of_Greece.svg",
+	"armoirie":"commons/7/7c/Coat_of_arms_of_Greece.svg"
+},
+{
+	"nom":"grenade",
+	"capitale":"saint-georges",
+	"article":"de la ",
+	"langue":["anglais","créoles grenadiens anglais","français"],
+	"monnaie":["dollar des caraïbes orientales"],
+	"code_iso":"GRD, GD",
+	"drapeau":"b/bc/Flag_of_Grenada.svg",
+	"armoirie":"commons/0/03/Coat_of_arms_of_Grenada.svg"
+},
+{
+	"nom":"guatemala",
+	"capitale":"guatemala",
+	"article":"du ",
+	"langue":["espagnol"],
+	"monnaie":["quetzal"],
+	"code_iso":"GTM, GT",
+	"drapeau":"e/ec/Flag_of_Guatemala.svg",
+	"armoirie":"commons/1/15/Coat_of_arms_of_Guatemala.svg"
+},
+{
+	"nom":"guinée",
+	"capitale":"conakry",
+	"article":"de la ",
+	"langue":["français"],
+	"monnaie":["franc guinéen"],
+	"code_iso":"GIN, GN",
+	"drapeau":"e/ed/Flag_of_Guinea.svg",
+	"armoirie":"commons/0/08/Coat_of_arms_of_Guinea-new.svg"
+},
+{
+	"nom":"guinée-bissau",
+	"capitale":"bissau",
+	"article":"de la ",
+	"langue":["portugais","créole de guinée-bissau"],
+	"monnaie":["franc cfa"],
+	"code_iso":"GNB, GW",
+	"drapeau":"0/01/Flag_of_Guinea-Bissau.svg",
+	"armoirie":"commons/0/06/Emblem_of_Guinea-Bissau.svg"
+},
+{
+	"nom":"guinée équatoriale",
+	"capitale":"malabo",
+	"article":"de la ",
+	"langue":["espagnol","français","portugais"],
+	"monnaie":["franc cfa"],
+	"code_iso":"GNQ, GQ",
+	"drapeau":"3/31/Flag_of_Equatorial_Guinea.svg",
+	"armoirie":"commons/f/f8/Coat_of_arms_of_Equatorial_Guinea.svg"
+},
+{
+	"nom":"guyana",
+	"capitale":"georgetown",
+	"article":"de la ",
+	"langue":["anglais"],
+	"monnaie":["dollar de guyana"],
+	"code_iso":"GUY, GY",
+	"drapeau":"9/99/Flag_of_Guyana.svg",
+	"armoirie":"commons/2/23/Coat_of_arms_of_Guyana.svg"
+},
+{
 	"nom":"",
 	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
 	"langue":[""],
 	"monnaie":[""],
 	"code_iso":"",

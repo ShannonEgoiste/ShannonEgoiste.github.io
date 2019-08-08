@@ -4,8 +4,9 @@
 	<meta charset="utf-8">
 	<title>world guess</title>
 	<script src='jquery.js'></script>
+	<link href="https://fonts.googleapis.com/css?family=Amaranth&amp;display=swap" rel="stylesheet">
 	<style>
-		*{padding:0;margin:}
+		*{padding:0;margin:0;font-family:Amaranth;}
 	
 		#modal{
 			text-align:center;
@@ -58,6 +59,9 @@
 			visibility:hidden;
 		}
 		
+		#question{
+			padding:10px;
+		}
 		
 	</style>
 	
@@ -80,7 +84,24 @@
 	<script>
 	var score = 0;
 	var maxscore = 0;
-	$(document).ready(function(){quizchoose();});
+	$(document).ready(function(){
+		quizchoose();
+		//showAll();
+	});
+	function showAll(){
+		var d = "<table><tr><th>name</th><th>capitale</th><th>flag</th><th>emblem</th></tr>";
+		for(var i = 0; i < world.length;i++){
+			if(world[i]["nom"] == "") continue;
+			d+="<tr><th>"+world[i]["nom"]+"</th>";
+			d+="<th>"+world[i]["capitale"]+"</th>";
+			d+="<th><img height='100px' src='https://upload.wikimedia.org/wikipedia/commons/"+world[i]["drapeau"]+"'></img></th>";
+			d+="<th><img height='100px' src='https://upload.wikimedia.org/wikipedia/"+world[i]["armoirie"]+"'></img></th>";
+			d+="</tr>";
+		}
+		d+="</table>";
+		$("body").html(d);
+	}
+	
 	
 	function rand(min,max) {min = Math.ceil(min);return Math.floor(Math.random() * (Math.floor(max) - min)) + min;}
 	function shuffleArray(array) {
@@ -102,8 +123,14 @@
 	
 	function afficherQCM(){$("#reponse").removeClass("masquerreponse");}
 	
+	function firstupper(name){
+		return name.charAt(0).toUpperCase() + name.slice(1);
+	}
+	
+	
 	function wrongchoice(btn){
 		$(btn).addClass("wrong");
+		$(".goodanswerforresponse").addClass("good");
 	
 		setTimeout(function(){
 		$(btn).removeClass("wrong");
@@ -113,26 +140,33 @@
 		},750);
 	}
 	function quizchoose(){
-		var choose = rand(0,2);
+		var choose = rand(0,3);
 		if(choose == 0)
 			quiz("la","capitale");
 		if(choose == 1)
 			quiz("le","drapeau");
+		if(choose == 2)
+			quiz("l'","armoirie");
 	}
 	
 	function quiz(article,question){
 		$("#question").html("");$("#reponse").html("");
 		$("#reponse").addClass("masquerreponse");
-		var choicecountry = rand(0,world.length-1);
-		var country = world[choicecountry];
+		var choicecountry = rand(0,world.length);
+		while(world[choicecountry]["nom"] == ""){
+			choicecountry = rand(0,world.length);
+		}
+		country = world[choicecountry];
 		
-		$("#question").append("<h5>quel est "+article+" "+question+" "+country["article"]+country["nom"]+" ?</h5>");
+		
+		$("#question").append("<h3>Quel est "+article+" "+question+" "+country["article"]+firstupper(country["nom"])+" ?</h3>");
 		
 		var listechoix = [];
 		
 		listechoix.push(country[question]);
 		while(listechoix.length != 5){
-			var testc = world[rand(0,world.length-1)];
+			var testc = world[rand(0,world.length)];
+			if(testc["nom"] =="") continue;
 			if(listechoix.indexOf(testc[question]) == -1){
 					listechoix.push(testc[question]);
 			}
@@ -146,11 +180,12 @@
 			if(valeur==country[question]) goodanswer=1;
 			
 			if(question=='drapeau') valeur = "<img width='100px' src='https://upload.wikimedia.org/wikipedia/commons/"+valeur+"'></img>";
+			if(question=='armoirie') valeur = "<img width='100px' src='https://upload.wikimedia.org/wikipedia/"+valeur+"'></img>";
 			
 			if(goodanswer)
-				$("#reponse").append("<button onclick='goodchoice(this)'>"+valeur+"</button>");
+				$("#reponse").append("<button class='goodanswerforresponse' onclick='goodchoice(this)'>"+firstupper(valeur)+"</button>");
 			else
-				$("#reponse").append("<button onclick='wrongchoice(this)'>"+valeur+"</button>");
+				$("#reponse").append("<button onclick='wrongchoice(this)'>"+firstupper(valeur)+"</button>");
 		}
 	}
 		
