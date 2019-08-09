@@ -11,41 +11,24 @@
 		#modal{
 			text-align:center;
 			margin: 0 auto;
-			width: 512px;
-			border-radius: 3px;
-			border:1px solid #000;
+			padding:10px;
+			width: 75vw;
+			border-radius:10px;
+			box-shadow:1px 2px 10px #000;
 		}
 		
-		button.wrong{
-			background-color:#F33!important;
+		
+		button.wrong{background-color:#F33!important;}
+		button.good{background-color:#5F6!important;}
+		button{cursor:pointer;vertical-align: top;border-radius: 3px;margin:10px 5px;padding:10px;
+			border:none;outline:none;background-color:#EEE;border-radius;10px;transition:0.2s ease;}
+		button:hover{background-color:#CCC;transition:0.2s ease;color:#FFF;}
+		button:active{background-color:#333;outline:none;}
+		
+		.qflag{
+			box-shadow:0px 0px 4px #CCC;
 		}
 		
-		button.good{
-			background-color:#5F6!important;
-		}
-		
-		button{	
-			cursor:pointer;
-			vertical-align: top;
-			border-radius: 3px;
-			margin:10px 5px;padding:10px;
-			border:none;
-			outline:none;
-			background-color:#EEE;
-			border-radius;10px;
-			transition:0.5s ease;
-		}
-		
-		button:hover{
-			background-color:#CCC;
-			transition:0.5s ease;
-			color:#FFF;
-		}
-		
-		button:active{
-			background-color:#333;
-			outline:none;
-		}
 		.score{
 			position:fixed;
 			top:10px;
@@ -70,124 +53,114 @@
 	<div id='score'>score : 0/0</div>
 
 	<div id='modal'>
-		<div id='question'>
-			
-		</div>
-		<hr>
-		<div id='reponse'>
-		
-		</div>
-		<a style='padding:10px' href='#' onclick='afficherQCM()'>afficher QCM</a>
+		<div id='question'></div>
+		<hr style='margin:20px'>
+		<div id='reponse'></div>
 	</div>
 	
 	<script src='world.js'></script>
+	<script src='tools.js'></script>
 	<script>
-	var score = 0;
-	var maxscore = 0;
+	var listOrder = [];
+	var badAnswerList = [];
+	var indexOrder = 0;
+	var worldLength = 0;
+	var questionwanted = "nom";
+	var answerwanted = "capitale";
+	
 	$(document).ready(function(){
-		quizchoose();
-		//showAll();
+		worldLength = 5;//world.lengthsubempty("nom");
+		for(var i = 0;i<worldLength;i++)
+			listOrder.push(i);
+		listOrder.shuffle();
+		Guesser(questionwanted,answerwanted);
 	});
-	function showAll(){
-		var d = "<table><tr><th>name</th><th>capitale</th><th>flag</th><th>emblem</th></tr>";
-		for(var i = 0; i < world.length;i++){
-			if(world[i]["nom"] == "") continue;
-			d+="<tr><th>"+world[i]["nom"]+"</th>";
-			d+="<th>"+world[i]["capitale"]+"</th>";
-			d+="<th><img height='100px' src='https://upload.wikimedia.org/wikipedia/commons/"+world[i]["drapeau"]+"'></img></th>";
-			d+="<th><img height='100px' src='https://upload.wikimedia.org/wikipedia/"+world[i]["armoirie"]+"'></img></th>";
-			d+="</tr>";
+
+	function getNextCountry(){
+		if(indexOrder >= listOrder.length){
+			indexOrder = 0;
+			listOrder = badAnswerList;
+			badAnswerList=[];
+			listOrder.shuffle();
 		}
-		d+="</table>";
-		$("body").html(d);
+		return world[listOrder[indexOrder]];
 	}
 	
+	function Guesser(q,a){ 
+		var country=getNextCountry();
 	
-	function rand(min,max) {min = Math.ceil(min);return Math.floor(Math.random() * (Math.floor(max) - min)) + min;}
-	function shuffleArray(array) {
-		for (var i = array.length - 1; i > 0; i--) {
-			var j = Math.floor(Math.random() * (i + 1));var temp = array[i];array[i] = array[j];array[j] = temp;
+		if(q == "capitale" && a == "nom"){
+			$("#question").html("<h4>"+country[q].UCFirst()+" est la capitale ?</h4>");
+		}else if(q == "nom" && a == "capitale"){
+			$("#question").html("<h4>quel est la capitale "+country["article"]+country[q].UCFirst()+" ?</h4>");
+		}else if(q == "drapeau" && a=="nom"){
+			$("#question").html("<img class='qflag' height='100px' src='https://upload.wikimedia.org/wikipedia/commons/"+country[q]+"'></img>");
+			$("#question").append("<h4> est le drapeau ?</h4>");
+		}else if(q == "nom" && a=="drapeau"){
+			$("#question").html("quel est le drapeau "+country["article"]+country[q].UCFirst()+" ?");
+		}else{
+			$("#question").html(country[q].UCFirst());
 		}
-	}
-	
-	function goodchoice(btn){
-		$(btn).addClass("good");
-		setTimeout(function(){
-		$(btn).removeClass("good");
-		score++;
-		maxscore++;
-		$("#score").html("score : "+score+"/"+maxscore);
-		quizchoose();
-		},750);
-	}
-	
-	function afficherQCM(){$("#reponse").removeClass("masquerreponse");}
-	
-	function firstupper(name){
-		return name.charAt(0).toUpperCase() + name.slice(1);
-	}
-	
-	
-	function wrongchoice(btn){
-		$(btn).addClass("wrong");
-		$(".goodanswerforresponse").addClass("good");
-	
-		setTimeout(function(){
-		$(btn).removeClass("wrong");
-		maxscore++;
-		$("#score").html("score : "+score+"/"+maxscore);
-		quizchoose();
-		},750);
-	}
-	function quizchoose(){
-		var choose = rand(0,3);
-		if(choose == 0)
-			quiz("la","capitale");
-		if(choose == 1)
-			quiz("le","drapeau");
-		if(choose == 2)
-			quiz("l'","armoirie");
-	}
-	
-	function quiz(article,question){
-		$("#question").html("");$("#reponse").html("");
-		$("#reponse").addClass("masquerreponse");
-		var choicecountry = rand(0,world.length);
-		while(world[choicecountry]["nom"] == ""){
-			choicecountry = rand(0,world.length);
-		}
-		country = world[choicecountry];
 		
+		var listQ = [];
+		listQ.push(country);
 		
-		$("#question").append("<h3>Quel est "+article+" "+question+" "+country["article"]+firstupper(country["nom"])+" ?</h3>");
-		
-		var listechoix = [];
-		
-		listechoix.push(country[question]);
-		while(listechoix.length != 5){
-			var testc = world[rand(0,world.length)];
-			if(testc["nom"] =="") continue;
-			if(listechoix.indexOf(testc[question]) == -1){
-					listechoix.push(testc[question]);
+		while(listQ.length < Math.min(10,listOrder.length)){
+			var answer = world[rand(0,worldLength)];
+			if(listQ.indexOf(answer) == -1){
+				listQ.push(answer);
 			}
 		}
+		listQ.shuffle();
 		
-		shuffleArray(listechoix);
+		$("#reponse").html("");
 		
-		for(var i = 0 ; i < 5;i++){
-			var valeur = listechoix[i];
-			var goodanswer = 0;
-			if(valeur==country[question]) goodanswer=1;
+		listQ.forEach(function(elmnt, i){
+			$('#reponse').append(
+				"<button "+
+				(elmnt[a]==country[a]?"class='goodAnswer' onclick='goodAnswer()'":"onclick='badAnswer(this)'")+
+				" >"+(a=="nom"?elmnt["article"]:"")+elmnt[a]+"</button>"
+			);
 			
-			if(question=='drapeau') valeur = "<img width='100px' src='https://upload.wikimedia.org/wikipedia/commons/"+valeur+"'></img>";
-			if(question=='armoirie') valeur = "<img width='100px' src='https://upload.wikimedia.org/wikipedia/"+valeur+"'></img>";
 			
-			if(goodanswer)
-				$("#reponse").append("<button class='goodanswerforresponse' onclick='goodchoice(this)'>"+firstupper(valeur)+"</button>");
-			else
-				$("#reponse").append("<button onclick='wrongchoice(this)'>"+firstupper(valeur)+"</button>");
+		});
+		
+		
+	}
+	
+	var awaitForNewResponse = 0
+	
+	function goodAnswer(){
+		if(!awaitForNewResponse){
+			awaitForNewResponse = 1;
+			$(".goodAnswer").addClass("good");
+			indexOrder++;
+			setTimeout(function(){
+				Guesser(questionwanted,answerwanted);
+				awaitForNewResponse=0;
+			},1000);
 		}
 	}
+	
+	function badAnswer(elmnt){
+		if(!awaitForNewResponse){
+			awaitForNewResponse = 1;
+			badAnswerList.push(listOrder[indexOrder]);
+			$(elmnt).addClass("wrong");
+			$(".goodAnswer").addClass("good");
+			indexOrder++;
+			setTimeout(function(){
+				Guesser(questionwanted,answerwanted);
+				awaitForNewResponse=0;
+			},1000);
+		}
+	}
+	
+	
+	
+	
+	
+	
 		
 	</script>
 </body>
