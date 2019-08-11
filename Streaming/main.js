@@ -1,10 +1,10 @@
 $(document).ready(function(){
-	var listFilm = localStorage['listeFilm'].split(";");
+	/*var listFilm = localStorage['listeFilm'].split(";");
 	
 	for(var i = listFilm.length; i > 0; i--){
 		$("#lastMovie").append("<tr><td><a href='"+listFilm[i-1]+"'>"+listFilm[i-1]+"</a></td></tr>");
 	}
-	
+	*/
 	if($_GET("link")){
 		console.log($_GET("link"));
 		$("#movieUrl").val($_GET("link"));
@@ -67,10 +67,10 @@ function launchMovie(){
 }
 
 function addElement(nom){
-	var listFilm = localStorage['listeFilm'].split(";");
+	/*var listFilm = localStorage['listeFilm'].split(";");
 	if(listFilm.length > 100){
 		listFilm.splice(0,1);
 	}
 	listFilm.push(nom);
-	localStorage['listeFilm'] = listFilm.join(";");
+	localStorage['listeFilm'] = listFilm.join(";");*/
 }
