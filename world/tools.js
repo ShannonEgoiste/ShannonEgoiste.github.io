@@ -31,6 +31,19 @@ Array.prototype.lengthsubempty = function(sub){
 	return this.length;
 }
 
+Array.prototype.getSubArray = function(sub){
+	var subarray = [];
+	for(var i = 0; i < this.length;i++){
+		var name = this[i][sub];
+		for(var j = 0 ; j < name.length;j++){
+			if(!subarray.includes(name[j]))
+				subarray.push(name[j]);
+		}
+	}
+	return subarray;
+}
+
+
 String.prototype.UCFirst = function(){
 	return this.charAt(0).toUpperCase() + this.slice(1);
 }

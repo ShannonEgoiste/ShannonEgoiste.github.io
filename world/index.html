@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -10,7 +10,7 @@
 	
 		#modal{
 			text-align:center;
-			margin: 0 auto;
+			margin:100px auto;
 			padding:10px;
 			width: 75vw;
 			border-radius:10px;
@@ -37,43 +37,121 @@
 			border-radius:10px;
 			border:1px solid #000;
 		}
+		.chrono{
+			position:fixed;
+			top:10px;
+			right:10px;
+			padding:10px;
+			border-radius:10px;
+			border:1px solid #000;
+		}
 		
-		.masquerreponse{
-			visibility:hidden;
+		
+		.masque{
+			display:none;
 		}
 		
 		#question{
 			padding:10px;
 		}
 		
+		
 	</style>
 	
 </head>
 <body>
-	<div id='score'>score : 0/0</div>
+	<div class='score masque'><a href='#' onclick="document.location.reload();"> &lt retour</a> | score : <span id='score'>0/0</span></div>
+	<div class='chrono masque'></div>
 
 	<div id='modal'>
-		<div id='question'></div>
-		<hr style='margin:20px'>
-		<div id='reponse'></div>
+		<div id='parametre'>
+			<h3>Mode de Jeu</h3>
+			<hr style='margin:10px'>
+			trouver <span id='article1choix'>la</span>
+			<select id='answerselect' onchange='if($(this).val() == "capitale") $("#article1choix").html("la"); else  $("#article1choix").html("le");'>
+				<option value='nom'>pays</option>
+				<option selected>capitale</option>
+				<option>drapeau</option>
+			</select>
+				a partir <span id='article2choix'>du</span>
+			<select id='questionselect' onchange='if($(this).val() == "capitale") $("#article2choix").html("de la"); else  $("#article2choix").html("du");'>
+				<option value='nom'>pays</option>
+				<option>capitale</option>
+				<option>drapeau</option>
+			</select><div style='padding:10px'></div>
+			<label>nombre de réponse au QCM :<span style='padding:10px'></span>
+			<input id='combiendereponse' type='number' value='5' style='width:50px;text-align:center'></input>
+			</label><div style='padding:10px'></div>
+			<label>Temps chrono a chaque question (0 = désactiver) : <span style='padding:10px'></span>
+			<input id='tempschrono' type='number' value='0' style='width:50px;text-align:center'></input>
+			</label>
+			
+			
+			<hr style='margin:10px'>
+			<button onclick='startthegame()'> c'est partit ! </button>
+		</div>
+		<div id='questionnaire' class='masque'>
+			<div id='question'></div>
+			<hr style='margin:20px'>
+			<div id='reponse' class='masque'></div>
+			<div></div>
+		</div>
+		<a class='masque' id='QCMLabel' href='#' onclick='showQCM()'>Montrer le QCM</a>
 	</div>
 	
 	<script src='world.js'></script>
 	<script src='tools.js'></script>
 	<script>
+	var baseChronoTime = 3;
 	var listOrder = [];
 	var badAnswerList = [];
 	var indexOrder = 0;
 	var worldLength = 0;
-	var questionwanted = "nom";
-	var answerwanted = "capitale";
+	var questionwanted = "";
+	var answerwanted = "";
+	var maxchoice;
+	var score = 0;
+	var scoreIncrement = 2;
 	
-	$(document).ready(function(){
-		worldLength = 5;//world.lengthsubempty("nom");
+	function showQCM(){
+		$("#reponse").removeClass("masque");
+		$("#QCMLabel").addClass("masque");
+		chrono();
+	}
+	
+	function hideQCM(){
+		$("#reponse").addClass("masque");
+		$("#QCMLabel").removeClass("masque");
+	}
+	
+	function startthegame(){
+		questionwanted = $("#questionselect").val();
+		answerwanted = $("#answerselect").val();
+		maxchoice = $("#combiendereponse").val();
+	
+		$(".score").removeClass("masque");
+		baseChronoTime = $("#tempschrono").val();
+		if(baseChronoTime > 0) $(".chrono").removeClass("masque");
+		$("#questionnaire").removeClass("masque");
+		$("#parametre").addClass("masque");
+		$("#QCMLabel").removeClass("masque");
+		
+		worldLength = world.lengthsubempty("nom");
 		for(var i = 0;i<worldLength;i++)
 			listOrder.push(i);
 		listOrder.shuffle();
+		setScore(0,worldLength);
+		
+		$(".chrono").html("0"+baseChronoTime+" s");
 		Guesser(questionwanted,answerwanted);
+	}
+	
+	function setScore(score,scoremaxi){
+		$("#score").html(" "+score+"/"+scoremaxi*2);
+	}
+	
+	$(document).ready(function(){
+	
 	});
 
 	function getNextCountry(){
@@ -82,9 +160,27 @@
 			listOrder = badAnswerList;
 			badAnswerList=[];
 			listOrder.shuffle();
+			scoreIncrement/=2;
+			if(scoreIncrement < 1) scoreIncrement = 0;
 		}
 		return world[listOrder[indexOrder]];
 	}
+	
+
+	function chrono(){
+		if(baseChronoTime > 0){
+			var chrono = baseChronoTime;
+			var intervalchrono = setInterval(function(){
+				chrono-=0.1;
+				$(".chrono").html("0"+Math.round(chrono)+" s");
+				if(chrono < 0.1){ 
+					clearInterval(intervalchrono);
+					badAnswer($(".badAnswer"));
+				}
+			},100);
+		}
+	}
+	
 	
 	function Guesser(q,a){ 
 		var country=getNextCountry();
@@ -102,10 +198,12 @@
 			$("#question").html(country[q].UCFirst());
 		}
 		
+		$(".chrono").html("0"+baseChronoTime+" s");
+		
 		var listQ = [];
 		listQ.push(country);
 		
-		while(listQ.length < Math.min(10,listOrder.length)){
+		while(listQ.length < Math.min(maxchoice,listOrder.length)){
 			var answer = world[rand(0,worldLength)];
 			if(listQ.indexOf(answer) == -1){
 				listQ.push(answer);
@@ -118,7 +216,7 @@
 		listQ.forEach(function(elmnt, i){
 			$('#reponse').append(
 				"<button "+
-				(elmnt[a]==country[a]?"class='goodAnswer' onclick='goodAnswer()'":"onclick='badAnswer(this)'")+
+				(elmnt[a]==country[a]?"class='goodAnswer' onclick='goodAnswer()'":"class='badAnswer' onclick='badAnswer(this)'")+
 				" >"+(a=="nom"?elmnt["article"]:"")+elmnt[a]+"</button>"
 			);
 			
@@ -135,7 +233,10 @@
 			awaitForNewResponse = 1;
 			$(".goodAnswer").addClass("good");
 			indexOrder++;
-			setTimeout(function(){
+		score+=scoreIncrement;
+		setScore(score,worldLength);
+		setTimeout(function(){
+				hideQCM();
 				Guesser(questionwanted,answerwanted);
 				awaitForNewResponse=0;
 			},1000);
@@ -150,6 +251,7 @@
 			$(".goodAnswer").addClass("good");
 			indexOrder++;
 			setTimeout(function(){
+				hideQCM();
 				Guesser(questionwanted,answerwanted);
 				awaitForNewResponse=0;
 			},1000);

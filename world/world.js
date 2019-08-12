@@ -848,5 +848,1085 @@ var world = [
 	"code_iso":"",
 	"drapeau":"",
 	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
+},
+{
+	"nom":"",
+	"capitale":"",
+	"article":"",
+	"langue":[""],
+	"monnaie":[""],
+	"code_iso":"",
+	"drapeau":"",
+	"armoirie":""
 }
 ]
