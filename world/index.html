@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -184,6 +184,22 @@
 	
 	function Guesser(q,a){ 
 		var country=getNextCountry();
+		
+		if(country == undefined){
+			var scoremaxi = worldLength*2;
+			$("#score").html(" ");
+			$("#modal").html("");
+			$("#modal").append("<h3>Vous avez un score total de </h3>");
+			$("#modal").append("<hr>");
+			$("#modal").append("<h3>"+score+"/"+scoremaxi+"</h3>");
+			$("#modal").append("<hr>");
+			if(score == scoremaxi)				$("#modal").append("<div>C'est... Parfait ;)</div>");
+			else if(score < scoremaxi*0.25)		$("#modal").append("<div>C'est.... nul ?</div>");
+			else if(score < scoremaxi*0.50)		$("#modal").append("<div>C'est... en dessous de la moyenne reesaie</div>");
+			else if(score < scoremaxi*0.75)		$("#modal").append("<div>C'est... presque réussis !</div>");
+			return;
+		}
+		
 	
 		if(q == "capitale" && a == "nom"){
 			$("#question").html("<h4>"+country[q].UCFirst()+" est la capitale ?</h4>");
@@ -214,11 +230,21 @@
 		$("#reponse").html("");
 		
 		listQ.forEach(function(elmnt, i){
-			$('#reponse').append(
-				"<button "+
-				(elmnt[a]==country[a]?"class='goodAnswer' onclick='goodAnswer()'":"class='badAnswer' onclick='badAnswer(this)'")+
-				" >"+(a=="nom"?elmnt["article"]:"")+elmnt[a]+"</button>"
-			);
+		
+		
+			if(a=="drapeau"){
+				$('#reponse').append(
+					"<button "+
+					(elmnt[a]==country[a]?"class='goodAnswer' onclick='goodAnswer()'":"class='badAnswer' onclick='badAnswer(this)'")+
+					" ><img height='100px' src='https://upload.wikimedia.org/wikipedia/commons/"+elmnt[a]+"'></img></button>"
+				);
+			}else{
+				$('#reponse').append(
+					"<button "+
+					(elmnt[a]==country[a]?"class='goodAnswer' onclick='goodAnswer()'":"class='badAnswer' onclick='badAnswer(this)'")+
+					" >"+(a=="nom"?elmnt["article"]:"")+elmnt[a]+"</button>"
+				);
+			}
 			
 			
 		});
