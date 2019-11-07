@@ -103,6 +103,7 @@ commons/6/64/Coat_of_arms_of_Liberia.svg
 commons/f/f6/The_emblem_on_the_passport_of_Libya.svg
 commons/1/18/Staatswappen-Liechtensteins.svg
 commons/d/dd/Coat_of_arms_of_Lithuania.svg
+commons/6/6b/Greater_coat_of_arms_of_the_grand-duchy_of_Luxembourg.svg
 commons/6/6a/Coat_of_arms_of_North_Macedonia.svg
 commons/9/9b/Seal_of_Madagascar.svg
 commons/2/26/Coat_of_arms_of_Malaysia.svg
