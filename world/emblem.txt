@@ -136,6 +136,7 @@ commons/7/7c/Coat_of_arms_of_Uganda.svg
 commons/7/77/Emblem_of_Uzbekistan.svg
 commons/e/ef/State_emblem_of_Pakistan.svg
 commons/1/1f/Seal_of_Palau.svg
+commons/6/6c/Coat_of_arms_of_Palestine.svg
 commons/c/cb/Escudo_armas_Panama.png
 commons/3/30/National_Emblem_of_Papua_New_Guinea.svg
 commons/7/70/Coat_of_arms_of_Paraguay.svg

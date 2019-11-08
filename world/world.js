@@ -1245,9 +1245,169 @@ var world = [
 	"armoirie":"commons/1/14/Emblem_of_Mozambique.svg"
 },
 {
-	"nom":"",
-	"capitale":"",
-	"article":"",
+	"nom":"namibie",
+	"capitale":"windhoek",
+	"article":"de la ",
+	"langue":["anglais"],
+	"monnaie":["dollar namibien"],
+	"code_iso":"NAM, NA",
+	"drapeau":"0/00/Flag_of_Namibia.svg",
+	"armoirie":"commons/8/8e/Coat_of_arms_of_Namibia.svg"
+},
+{
+	"nom":"nauru",
+	"capitale":"yaren",
+	"article":"de ",
+	"langue":["nauruan"],
+	"monnaie":["dollar australien"],
+	"code_iso":"NRU, NR",
+	"drapeau":"3/30/Flag_of_Nauru.svg",
+	"armoirie":"commons/d/df/Coat_of_arms_of_Nauru.svg"
+},
+{
+	"nom":"népal",
+	"capitale":"katmandou",
+	"article":"du ",
+	"langue":["népalais"],
+	"monnaie":["roupie népalaise"],
+	"code_iso":"NPL, NP",
+	"drapeau":"9/9b/Flag_of_Nepal.svg",
+	"armoirie":"commons/2/23/Emblem_of_Nepal.svg"
+},
+{
+	"nom":"nicaragua",
+	"capitale":"managua",
+	"article":"du ",
+	"langue":["espagnol"],
+	"monnaie":["córdoba oro"],
+	"code_iso":"NIC, NI",
+	"drapeau":"1/19/Flag_of_Nicaragua.svg",
+	"armoirie":"commons/c/cc/Coat_of_arms_of_Nicaragua.svg"
+},
+{
+	"nom":"niger",
+	"capitale":"niamey",
+	"article":"du ",
+	"langue":["français"],
+	"monnaie":["franc cfa"],
+	"code_iso":"NER, NE",
+	"drapeau":"f/f4/Flag_of_Niger.svg",
+	"armoirie":"commons/0/03/Coat_of_arms_of_Niger.svg"
+},
+{
+	"nom":"nigeria",
+	"capitale":"abuja",
+	"article":"du ",
+	"langue":["anglais"],
+	"monnaie":["naira"],
+	"code_iso":"NGA, NG",
+	"drapeau":"7/79/Flag_of_Nigeria.svg",
+	"armoirie":"commons/b/bc/Coat_of_arms_of_Nigeria.svg"
+},
+{
+	"nom":"niue",
+	"capitale":"alofi",
+	"article":"de ",
+	"langue":["anglais","niuéen"],
+	"monnaie":["dollar néo-zélandais"],
+	"code_iso":"NIU, NU",
+	"drapeau":"0/01/Flag_of_Niue.svg",
+	"armoirie":"commons/8/8f/Public_Seal_of_Niue.svg"
+},
+{
+	"nom":"norvège",
+	"capitale":"oslo",
+	"article":"de la ",
+	"langue":["norvégien","same","kvène"],
+	"monnaie":["couronne norvégienne"],
+	"code_iso":"NOR, NO",
+	"drapeau":"d/d9/Flag_of_Norway.svg",
+	"armoirie":"commons/9/95/Coat_of_arms_of_Norway.svg"
+},
+{
+	"nom":"nouvelle-zèlande",
+	"capitale":"wellington",
+	"article":"de ",
+	"langue":["anglais","maori"],
+	"monnaie":["dollar néo-zélandais"],
+	"code_iso":"NZL, NZ",
+	"drapeau":"3/3e/Flag_of_New_Zealand.svg",
+	"armoirie":"commons/d/d3/Coat_of_arms_of_New_Zealand.svg"
+},
+{
+	"nom":"oman",
+	"capitale":"mascate",
+	"article":"de l'",
+	"langue":["arabe"],
+	"monnaie":["rial omanais"],
+	"code_iso":"OMN, OM",
+	"drapeau":"d/dd/Flag_of_Oman.svg",
+	"armoirie":"commons/7/7b/National_emblem_of_Oman.svg"
+},
+{
+	"nom":"Ouganda",
+	"capitale":"Kampala",
+	"article":"de l'",
+	"langue":["anglais","swahili"],
+	"monnaie":["shilling ougandais"],
+	"code_iso":"UGA, UG",
+	"drapeau":"4/4e/Flag_of_Uganda.svg",
+	"armoirie":"commons/7/7c/Coat_of_arms_of_Uganda.svg"
+},
+{
+	"nom":"Ouzbékistan",
+	"capitale":"tachkent",
+	"article":"de l'",
+	"langue":["ouzbek","russe"],
+	"monnaie":["sum ouzbek"],
+	"code_iso":"UZB, UZ",
+	"drapeau":"8/84/Flag_of_Uzbekistan.svg",
+	"armoirie":"commons/7/77/Emblem_of_Uzbekistan.svg"
+},
+{
+	"nom":"pakistan",
+	"capitale":"islamabad",
+	"article":"du ",
+	"langue":["ourdou"],
+	"monnaie":["roupie pakistanaise"],
+	"code_iso":"PAK, PK",
+	"drapeau":"3/32/Flag_of_Pakistan.svg",
+	"armoirie":"commons/e/ef/State_emblem_of_Pakistan.svg"
+},
+{
+	"nom":"palaos",
+	"capitale":"melekeok",
+	"article":"des ",
+	"langue":["anglais","paluan","japonais"],
+	"monnaie":["dollar américain"],
+	"code_iso":"PLW, PW",
+	"drapeau":"4/48/Flag_of_Palau.svg",
+	"armoirie":"commons/1/1f/Seal_of_Palau.svg"
+},
+{
+	"nom":"palestine",
+	"capitale":"ramallah",
+	"article":"de ",
+	"langue":["arabe"],
+	"monnaie":["shekel israélien","livre égyptienne","dinar jordanien"],
+	"code_iso":"PSE, PS",
+	"drapeau":"0/00/Flag_of_Palestine.svg",
+	"armoirie":"commons/6/6c/Coat_of_arms_of_Palestine.svg"
+},
+{
+	"nom":"panama",
+	"capitale":"panama",
+	"article":"du ",
+	"langue":["espagnol"],
+	"monnaie":["balboa"],
+	"code_iso":"PAN, PA",
+	"drapeau":"a/ab/Flag_of_Panama.svg",
+	"armoirie":"commons/c/cb/Escudo_armas_Panama.png"
+},
+{
+	"nom":"papouasie-nouvelle-guinée",
+	"capitale":"port moresby",
+	"article":"de la ",
 	"langue":[""],
 	"monnaie":[""],
 	"code_iso":"",
@@ -1255,9 +1415,9 @@ var world = [
 	"armoirie":""
 },
 {
-	"nom":"",
-	"capitale":"",
-	"article":"",
+	"nom":"paraguay",
+	"capitale":"asuncion",
+	"article":"du ",
 	"langue":[""],
 	"monnaie":[""],
 	"code_iso":"",
@@ -1265,9 +1425,9 @@ var world = [
 	"armoirie":""
 },
 {
-	"nom":"",
-	"capitale":"",
-	"article":"",
+	"nom":"pays-bas",
+	"capitale":"amsterdam",
+	"article":"des ",
 	"langue":[""],
 	"monnaie":[""],
 	"code_iso":"",
@@ -1275,9 +1435,9 @@ var world = [
 	"armoirie":""
 },
 {
-	"nom":"",
-	"capitale":"",
-	"article":"",
+	"nom":"perou",
+	"capitale":"lima",
+	"article":"du ",
 	"langue":[""],
 	"monnaie":[""],
 	"code_iso":"",
@@ -1285,9 +1445,9 @@ var world = [
 	"armoirie":""
 },
 {
-	"nom":"",
-	"capitale":"",
-	"article":"",
+	"nom":"philippines",
+	"capitale":"manille",
+	"article":"des ",
 	"langue":[""],
 	"monnaie":[""],
 	"code_iso":"",
@@ -1295,9 +1455,9 @@ var world = [
 	"armoirie":""
 },
 {
-	"nom":"",
-	"capitale":"",
-	"article":"",
+	"nom":"pologne",
+	"capitale":"varsovie",
+	"article":"de la ",
 	"langue":[""],
 	"monnaie":[""],
 	"code_iso":"",
@@ -1305,9 +1465,9 @@ var world = [
 	"armoirie":""
 },
 {
-	"nom":"",
-	"capitale":"",
-	"article":"",
+	"nom":"portugal",
+	"capitale":"lisbonne",
+	"article":"du ",
 	"langue":[""],
 	"monnaie":[""],
 	"code_iso":"",
@@ -1315,169 +1475,9 @@ var world = [
 	"armoirie":""
 },
 {
-	"nom":"",
-	"capitale":"",
-	"article":"",
-	"langue":[""],
-	"monnaie":[""],
-	"code_iso":"",
-	"drapeau":"",
-	"armoirie":""
-},
-{
-	"nom":"",
-	"capitale":"",
-	"article":"",
-	"langue":[""],
-	"monnaie":[""],
-	"code_iso":"",
-	"drapeau":"",
-	"armoirie":""
-},
-{
-	"nom":"",
-	"capitale":"",
-	"article":"",
-	"langue":[""],
-	"monnaie":[""],
-	"code_iso":"",
-	"drapeau":"",
-	"armoirie":""
-},
-{
-	"nom":"",
-	"capitale":"",
-	"article":"",
-	"langue":[""],
-	"monnaie":[""],
-	"code_iso":"",
-	"drapeau":"",
-	"armoirie":""
-},
-{
-	"nom":"",
-	"capitale":"",
-	"article":"",
-	"langue":[""],
-	"monnaie":[""],
-	"code_iso":"",
-	"drapeau":"",
-	"armoirie":""
-},
-{
-	"nom":"",
-	"capitale":"",
-	"article":"",
-	"langue":[""],
-	"monnaie":[""],
-	"code_iso":"",
-	"drapeau":"",
-	"armoirie":""
-},
-{
-	"nom":"",
-	"capitale":"",
-	"article":"",
-	"langue":[""],
-	"monnaie":[""],
-	"code_iso":"",
-	"drapeau":"",
-	"armoirie":""
-},
-{
-	"nom":"",
-	"capitale":"",
-	"article":"",
-	"langue":[""],
-	"monnaie":[""],
-	"code_iso":"",
-	"drapeau":"",
-	"armoirie":""
-},
-{
-	"nom":"",
-	"capitale":"",
-	"article":"",
-	"langue":[""],
-	"monnaie":[""],
-	"code_iso":"",
-	"drapeau":"",
-	"armoirie":""
-},
-{
-	"nom":"",
-	"capitale":"",
-	"article":"",
-	"langue":[""],
-	"monnaie":[""],
-	"code_iso":"",
-	"drapeau":"",
-	"armoirie":""
-},
-{
-	"nom":"",
-	"capitale":"",
-	"article":"",
-	"langue":[""],
-	"monnaie":[""],
-	"code_iso":"",
-	"drapeau":"",
-	"armoirie":""
-},
-{
-	"nom":"",
-	"capitale":"",
-	"article":"",
-	"langue":[""],
-	"monnaie":[""],
-	"code_iso":"",
-	"drapeau":"",
-	"armoirie":""
-},
-{
-	"nom":"",
-	"capitale":"",
-	"article":"",
-	"langue":[""],
-	"monnaie":[""],
-	"code_iso":"",
-	"drapeau":"",
-	"armoirie":""
-},
-{
-	"nom":"",
-	"capitale":"",
-	"article":"",
-	"langue":[""],
-	"monnaie":[""],
-	"code_iso":"",
-	"drapeau":"",
-	"armoirie":""
-},
-{
-	"nom":"",
-	"capitale":"",
-	"article":"",
-	"langue":[""],
-	"monnaie":[""],
-	"code_iso":"",
-	"drapeau":"",
-	"armoirie":""
-},
-{
-	"nom":"",
-	"capitale":"",
-	"article":"",
-	"langue":[""],
-	"monnaie":[""],
-	"code_iso":"",
-	"drapeau":"",
-	"armoirie":""
-},
-{
-	"nom":"",
-	"capitale":"",
-	"article":"",
+	"nom":"qatar",
+	"capitale":"doha",
+	"article":"du ",
 	"langue":[""],
 	"monnaie":[""],
 	"code_iso":"",
