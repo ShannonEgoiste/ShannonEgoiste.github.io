@@ -57,7 +57,7 @@ function launchMovie(){
 	$("body").html(" ");
 	$("body").append('<div id="info" >');
 	
-	$("#info").append('<iframe id="vidFrame" src="https://uptostream.com/iframe/'+link+'" frameborder="0" scrolling="no"></iframe>');
+	$("#info").append('<iframe id="vidFrame" src="https://uptostream.com/iframe/'+link+'" frameborder="0" scrolling="no" allowfullscreen></iframe>');
 	addElement("https://uptostream.com/iframe/"+link);	
 	
 	//$("#info").append('<iframe id="vidFrame" src="'+link+'" frameborder="0" scrolling="no"></iframe>');
