@@ -194,4 +194,4 @@ b/bc/Flag_of_Vanuatu.svg
 2/21/Flag_of_Vietnam.svg
 8/89/Flag_of_Yemen.svg
 0/06/Flag_of_Zambia.svg
-6/6a/Flag_of_Zimbabwe
+6/6a/Flag_of_Zimbabwe.svg
