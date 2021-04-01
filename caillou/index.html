@@ -1,0 +1,164 @@
+﻿<!doctype html>
+<html lang="fr">
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+	<script src="caillou.js"></script>
+	<meta charset="utf-8">
+	<title>Caillou</title>	
+	<style>
+		.stone:hover{
+			filter: opacity(0.5) drop-shadow(0 0 0 #c4ad86);
+		}
+		
+		.reverse{
+			transform:scaleX(-1);
+		}
+		
+		.texttroll{
+		font-family:Comic Sans MS, Comic Sans;
+		color:#FFF;
+		text-shadow: rgb(0, 0, 0) 5px 0px 0px, rgb(0, 0, 0) 4.90033px 0.993347px 0px, rgb(0, 0, 0) 4.60531px 1.94709px 0px, rgb(0, 0, 0) 4.12668px 2.82321px 0px, rgb(0, 0, 0) 3.48353px 3.58678px 0px, rgb(0, 0, 0) 2.70151px 4.20736px 0px, rgb(0, 0, 0) 1.81179px 4.6602px 0px, rgb(0, 0, 0) 0.849836px 4.92725px 0px, rgb(0, 0, 0) -0.145998px 4.99787px 0px, rgb(0, 0, 0) -1.13601px 4.86924px 0px, rgb(0, 0, 0) -2.08073px 4.54649px 0px, rgb(0, 0, 0) -2.94251px 4.04248px 0px, rgb(0, 0, 0) -3.68697px 3.37732px 0px, rgb(0, 0, 0) -4.28444px 2.57751px 0px, rgb(0, 0, 0) -4.71111px 1.67494px 0px, rgb(0, 0, 0) -4.94996px 0.7056px 0px, rgb(0, 0, 0) -4.99147px -0.291871px 0px, rgb(0, 0, 0) -4.83399px -1.27771px 0px, rgb(0, 0, 0) -4.48379px -2.2126px 0px, rgb(0, 0, 0) -3.95484px -3.05929px 0px, rgb(0, 0, 0) -3.26822px -3.78401px 0px, rgb(0, 0, 0) -2.4513px -4.35788px 0px, rgb(0, 0, 0) -1.53666px -4.75801px 0px, rgb(0, 0, 0) -0.560763px -4.96845px 0px, rgb(0, 0, 0) 0.437495px -4.98082px 0px, rgb(0, 0, 0) 1.41831px -4.79462px 0px, rgb(0, 0, 0) 2.34258px -4.41727px 0px, rgb(0, 0, 0) 3.17346px -3.86382px 0px, rgb(0, 0, 0) 3.87783px -3.15633px 0px, rgb(0, 0, 0) 4.4276px -2.32301px 0px, rgb(0, 0, 0) 4.80085px -1.39708px 0px, rgb(0, 0, 0) 4.98271px -0.415447px 0px;
+		font-size:72px;
+		}
+		
+		.blink_me {
+		  animation: blinker 0.5s linear infinite;
+		}
+
+		@keyframes blinker {
+			0% {
+				opacity: 1;
+			}
+			49% {
+				opacity: 1;
+			}
+			50% {
+				opacity: 0;
+			}
+			99%{
+				opacity: 0;
+			}
+		}
+		
+	</style>
+</head> 
+<body>
+	<div class="logo" style="position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);opacity:0;font-family: 'Great Vibes', cursive;font-size:200px"> <span style="color:#c4ad86;font-size:300px">V</span>alserin </div>
+	
+	
+	<div class="content d-none">
+		<h2 style="padding:10px">Select Gem :</h2> 
+		<div class="stone-list d-flex">
+				
+		</div>
+	</div>
+	
+	
+	<div class="video d-none" style="position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);">
+		<video class="nggyu" width='1920' autoplay>
+			<source src="https://rickrolled.fr/rickroll.mp4" type="video/mp4">
+		 </video>
+	</div>
+	<div class="awesome">
+		
+	</div>
+	
+	<div class="frog d-flex" style="position:fixed;bottom:0;overflow-x:none">
+		
+	</div>	
+	<div class="frog d-flex" style="position:fixed;top:0;overflow-x:none;transform:scaleY(-1)">
+		
+	</div>	
+	
+	<div class="textbonus d-none" style="position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);">
+		<p class="texttroll blink_me">
+			AHAHA wsh frr c 1 poison davril Com j'té tro u la tu doa avoar l'seum
+		</p> 
+	</div>
+	
+	<script>
+		$(document).ready(function(){
+			var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+			if (!isMobile) {
+				$(".logo").animate({opacity:1.0},500,function(){
+					setTimeout(function(){ $(".logo").animate({opacity:0.0},500,function(){
+						$(".content").removeClass("d-none");
+					}) }, 1000);
+				});
+				
+				caillou.forEach(function(x){
+					$(".stone-list").append("<div style='cursor:pointer' class='stone p-1' onclick='video()'><img src='Ico/"+x.Nom+".png' height='64px'></img></div>");
+				});
+			}
+			
+		});
+	
+		function video(){
+			$(".content").addClass("d-none");
+			$(".video").removeClass("d-none");
+			$(".textbonus").removeClass("d-none");
+			document.querySelector(".nggyu").play();
+			for(var i = 0; i < 25;i++){	
+				$(".frog").append("<img class='frogentity' src='rainbow.gif' width='128px'></img>");
+			}
+			frog();
+				
+			createAwesome(0,0,10,10);
+			
+			setInterval(function(){
+				$(".entity").each(function(index){
+					var dirx = parseInt($(this).data("dirx"));
+					var diry = parseInt($(this).data("diry"));
+					
+					var x = parseInt($(this).css("left").slice(0,-2))+$(this).data("dirx");
+					var y = parseInt($(this).css("top").slice(0,-2))+$(this).data("diry");
+					
+					if(x>window.innerWidth || x<0){
+						$(this).data("dirx",dirx*-1);
+						createAwesome(rand(0,window.innerWidth),rand(0,window.innerHeight),rand(5,10),rand(5,10));
+					}
+					if(y>window.innerHeight || y<0){ 
+						$(this).data("diry",diry*-1);
+						createAwesome(rand(0,window.innerWidth),rand(0,window.innerHeight),rand(5,10),rand(5,10));
+					}
+					$(this).css({"left":x+"px"});
+					$(this).css({"top":y+"px"});
+				});
+			},16);
+		}
+		
+		function rand(min,max){
+			return Math.floor(min+Math.random()*(max-min));
+		}
+		
+		
+		var nbAwesome = 0;
+		function createAwesome(x,y,dirX,dirY){
+			if(nbAwesome <100){
+				if(rand(0,100)>80){
+					$(".awesome").append("<img class='entity' style='position:fixed;left:"+x+"px;top:"+y+"px;' data-dirx='"+dirX+"' data-diry='"+dirY+"' src='troll.png' width='"+rand(64,128)+"px'></img>")
+				}else{
+					$(".awesome").append("<img class='entity' style='position:fixed;left:"+x+"px;top:"+y+"px;' data-dirx='"+dirX+"' data-diry='"+dirY+"' src='awesome.png' width='"+rand(64,128)+"px'></img>")
+				}
+			
+			
+				nbAwesome++;
+			}
+		}
+		
+		function frog(){
+			setInterval(function(){
+				if($(".frogentity").hasClass("reverse"))
+					$(".frogentity").removeClass("reverse");
+				else
+					$(".frogentity").addClass("reverse");
+			},500);
+		}
+	
+	</script>
+</body>
+</html>
