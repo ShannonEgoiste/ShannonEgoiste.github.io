@@ -29,7 +29,7 @@ var caillou = [
     ]
   },
   {
-    "Nom": "Coeur",
+    "Nom": "coeur",
     "Cotation": [
       "L",
 	  "l"
@@ -49,7 +49,7 @@ var caillou = [
 	 ]
   },
   {
-    "Nom": "Demi Lune",
+    "Nom": "Demi lune",
     "Cotation": [
       "L",
 	  "l",
@@ -90,7 +90,7 @@ var caillou = [
 	 ]
   },
   {
-    "Nom": "Pierre Diforme et Cabochon",
+    "Nom": "Pierre diforme et Cabochon",
     "Cotation": [
 	  "L",
 	  "l"
@@ -118,7 +118,7 @@ var caillou = [
 	 ]
   },
   {
-    "Nom": "Troidia coussin",
+    "Nom": "Troidia Coussin",
     "Cotation": [
 	  "L",
 	  "l"
