@@ -6,7 +6,7 @@ var world = [
 	"langue":["dari","pachto"],
 	"monnaie":["afghani"],
 	"code_iso":"AFG, AF",
-	"drapeau":"9/9a/Flag_of_Afghanistan.svg",
+	"drapeau":"0/0d/Flag_of_Afghanistan.svg",
 	"armoirie":"commons/4/47/National_emblem_of_Afghanistan.svg"
 },
 {
