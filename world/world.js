@@ -1971,7 +1971,7 @@ var world = [
 	"langue":["anglais","shona","nédébélé"],
 	"monnaie":["dollar rtgs"],
 	"code_iso":"ZWE, ZW",
-	"drapeau":"6/6a/Flag_of_Zimbabwe",
+	"drapeau":"6/6a/Flag_of_Zimbabwe.svg",
 	"armoirie":"commons/0/01/Coat_of_arms_of_Zimbabwe.svg"
 },
 {
