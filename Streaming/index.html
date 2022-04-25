@@ -44,8 +44,7 @@
 		iframe.style.width="100vw";
 		iframe.style.height="100vh";
 		document.querySelector(".video").appendChild(iframe);
-		document.title = "from url to iframe - "+videoTitle;
-		
+		if(videoTitle != undefined) document.title = "from url to iframe - "+videoTitle;
 	</script>
 </body>
 </html>
