@@ -1,0 +1,75 @@
+<html>
+<head>
+    <meta charset="utf8">
+    <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
+</head>
+<body style='width:100%; height:100%; overflow: hidden;'>
+    <div id="mynetwork" style="width:100VW;height:100VH;"></div>
+
+    <script src="listoeuvre.js"></script>
+    <script>
+        var datasetoeuvre = [];
+        
+        listoeuvre.forEach(function(elem){
+            datasetoeuvre.push({id:elem.numero, shape:"circularImage", image:elem.image,label:elem.numero+" - "+elem.name+"\n"+elem.adress});
+        });
+
+        // create an array with nodes
+        var nodes = new vis.DataSet(datasetoeuvre);
+
+        // create an array with edges
+        var edges = new vis.DataSet([
+            {from:28,to:27},
+            {from:27,to:29},
+            {from:25,to:26},
+            {from:29,to:30},
+            {from:30,to:18},
+            {from:18,to:15},
+            {from:18,to:17},
+            {from:15,to:16},
+            {from:15,to:17},
+            {from:15,to:13},
+            {from:16,to:14},
+            {from:16,to:2},
+            {from:14,to:2},
+            {from:14,to:1},
+            {from:14,to:13},
+            {from:13,to:12},
+            {from:12,to:10},
+            {from:12,to:11},
+            {from:10,to:09},
+            {from:10,to:11},
+            {from:09,to:08},
+            {from:08,to:7},
+            {from:08,to:19},
+            {from:7,to:6},
+            {from:6,to:4},
+            {from:6,to:5},
+            {from:5,to:4},
+            {from:4,to:3},
+            {from:3,to:1},
+            {from:23,to:22},
+            {from:22,to:21},
+            {from:21,to:24},
+            {from:24,to:20},
+            {from:20,to:19},
+        ]);
+
+        // create a network
+        var container = document.getElementById("mynetwork");
+        var data = {
+        nodes: nodes,
+        edges: edges,
+        };
+        var options = {
+            physics: {
+                barnesHut: {
+                    "avoidOverlap":1
+                },
+                minVelocity: 1
+            }
+        };
+        var network = new vis.Network(container, data, options);
+    </script>
+</body>
+</html>
