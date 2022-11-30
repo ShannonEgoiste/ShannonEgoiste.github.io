@@ -13,9 +13,9 @@
         listoeuvre.forEach(function(elem){
             datasetoeuvre.push({id:elem.numero, shape:"circularImage", image:elem.image,label:elem.numero+" - "+elem.name+"\n"+elem.adress});
         });
-            datasetoeuvre.push({id:"5b", shape:"circularImage"});
-            datasetoeuvre.push({id:"5t", shape:"circularImage"});
-            datasetoeuvre.push({id:"5q", shape:"circularImage"});
+            datasetoeuvre.push({id:"5b", shape:"circularImage",image:""});
+            datasetoeuvre.push({id:"5t", shape:"circularImage",image:""});
+            datasetoeuvre.push({id:"5q", shape:"circularImage",image:""});
         
         // create an array with nodes
         var nodes = new vis.DataSet(datasetoeuvre);
