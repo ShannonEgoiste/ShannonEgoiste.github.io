@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Quel membre de la Night Team est-tu ?</title>
+		<meta charset="utf-8"/>
+		<style>
+			*{
+				padding:0;margin:0;
+				font-family:sans-serif;
+			}
+			
+			.d-none{
+				display:none !important;
+			}
+			
+			.formContent{
+				display:flex;
+				flex-direction:column;
+				
+			}
+			.answer{
+				display:flex;
+				align-items:center;
+			}
+			
+			label{
+				padding:10px;
+			}
+			
+			.center{
+				width:100vw;
+				height:100vh;
+				display:flex;
+				justify-content:center;
+				align-items:center;
+			}
+			
+			button{
+				border-radius:2000px;
+				border:2px solid;
+				cursor:pointer;
+				background-color:rgba(0,0,0,0);
+				transition:background-color 0.2s;
+				padding:10px;
+			}
+			
+			button:hover{
+				outline:none;
+				background-color:rgba(0,0,0,0.1);
+			}
+			
+			.shake {
+			  animation: shake 0.5s;
+			  animation-iteration-count: infinite;
+			}
+			@keyframes shake {
+			  0% { transform: translate(1px, 1px) rotate(0deg); }
+			  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+			  20% { transform: translate(-3px, 0px) rotate(1deg); }
+			  30% { transform: translate(3px, 2px) rotate(0deg); }
+			  40% { transform: translate(1px, -1px) rotate(1deg); }
+			  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+			  60% { transform: translate(-3px, 1px) rotate(0deg); }
+			  70% { transform: translate(3px, 1px) rotate(-1deg); }
+			  80% { transform: translate(-1px, -1px) rotate(1deg); }
+			  90% { transform: translate(1px, 2px) rotate(0deg); }
+			  100% { transform: translate(1px, -2px) rotate(-1deg); }
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div style="position:fixed;top:0;left:0;padding:20px;color:rgba(0,0,0,0.8);">
+			<h3>quel membre de la Night Team est-tu ?</h3>
+		</div>
+	
+		<div class="center">
+			<div class="formContent">
+				<h4 class="question" style="padding:10px;">test est test ?</h4>
+				<hr style="width:100%;"/>
+				<div style="padding:10px;"></div>
+				<div class="answer"><input type="radio" name="quizz" id="q1"/><label for="q1" id="lblq1">test</label></div>
+				<div class="answer"><input type="radio" name="quizz" id="q2"/><label for="q2" id="lblq2">test</label></div>
+				<div class="answer"><input type="radio" name="quizz" id="q3"/><label for="q3" id="lblq3">test</label></div>
+				<div class="answer"><input type="radio" name="quizz" id="q4"/><label for="q4" id="lblq4">test</label></div>
+				<div class="answer"><input type="radio" name="quizz" id="q5"/><label for="q5" id="lblq5">test</label></div>
+				<div style="padding:20px;"></div>
+				<button class="nextQuestionButton" onclick="nextQuestion()">Question suivante &gt;&gt;</button>
+				<button class="finalAnswer d-none" onclick="seeResult()">Voir le resultat</button>
+			</div>
+			<div class="result d-none">
+				
+			</div>
+		</div>
+		
+		<script>
+			var question = [
+				{"question":"Parmis les couleurs suivantes, laquelle préfères-tu ?","answer":[
+						{"opt":"Rouge","stat":"Nono"},
+						{"opt":"Rose Pastel","stat":"Mai"},
+						{"opt":"Orange Clair","stat":"Koko"},
+						{"opt":"Hot Pink","stat":"Michiko"},
+						{"opt":"Light Green","stat":"Bunny"}
+					]
+				},
+				{"question":"quel pêché capitaux es-tu ?","answer":[
+						{"opt":"Orgeuil","stat":"Nono"},
+						{"opt":"Paresse","stat":"Mai"},
+						{"opt":"Envie","stat":"Koko"},
+						{"opt":"Luxure","stat":"Michiko"},
+						{"opt":"Gourmandise","stat":"Bunny"}
+					]
+				},
+				{"question":"Ton personnage Love Live! Favori ?","answer":[
+						{"opt":"Shiki","stat":"Nono"},
+						{"opt":"Kotori","stat":"Mai"},
+						{"opt":"Maki","stat":"Koko"},
+						{"opt":"Honoka","stat":"Michiko"},
+						{"opt":"Mari","stat":"Bunny"}
+					]
+				},
+				{"question":"Tu as une voix plutôt...","answer":[
+						{"opt":"Energique","stat":"Nono"},
+						{"opt":"Douce","stat":"Mai"},
+						{"opt":"Mélodieuse","stat":"Koko"},
+						{"opt":"Puissante","stat":"Michiko"},
+						{"opt":"Suave","stat":"Bunny"}
+					]
+				},
+				{"question":"Tu as/préfères les boobs...","answer":[
+						{"opt":"Petit/moyen","stat":"Nono"},
+						{"opt":"Petit","stat":"Mai"},
+						{"opt":"Moyens","stat":"Koko"},
+						{"opt":"ENORME","stat":"Michiko"},
+						{"opt":"Gros","stat":"Bunny"}
+					]
+				}
+			];
+			question = question.sort(() => (Math.random() > .5) ? 1 : -1);
+		
+			var questionIndex = 0;
+			var listAnswer = {
+				"Nono":0,
+				"Mai":0,
+				"Koko":0,
+				"Michiko":0,
+				"Bunny":0
+			};
+			
+			
+			fillForm();
+			function fillForm(){
+				var q = question[questionIndex];
+				
+				document.querySelector(".question").innerHTML = q.question;
+				
+				var listAnswer = q.answer.sort(() => (Math.random() > .5) ? 1 : -1);
+				
+				for(var i = 0 ; i < 5;i++){
+					document.querySelector("#q"+(i+1)).value = listAnswer[i].stat;
+					document.querySelector("#lblq"+(i+1)).innerHTML = listAnswer[i].opt;
+				}
+				
+				console.log(question.length+" "+(questionIndex+1));
+				if(question.length == (questionIndex+1)){
+					console.log("test");
+					document.querySelector(".nextQuestionButton").classList.add("d-none");
+					document.querySelector(".finalAnswer").classList.remove("d-none");
+				}
+				
+			}
+		
+			function nextQuestion(){
+				
+				
+				var checked = document.querySelector("input[name=quizz]:checked");
+				if(checked == undefined){
+					document.querySelector(".formContent").classList.add("shake");
+					setTimeout(function(){
+						document.querySelector(".formContent").classList.remove("shake");
+					},250);
+					return;
+				}
+				questionIndex++;
+				listAnswer[checked.value]++;
+				checked.checked = false;
+				fillForm();
+			}
+		
+			function seeResult(){
+				var result = {"name":"","howMany":0};
+			
+				Object.entries(listAnswer).forEach(function(entries){
+					if(entries[1] > result.howMany){
+						result.howMany = entries[1];
+						result.name = entries[0];
+					}
+				});
+				
+				document.querySelector(".formContent").classList.add("d-none");
+				document.querySelector(".result").classList.remove("d-none");
+				document.querySelector(".result").innerHTML = "Tu est "+result.name;
+				
+			}
+		
+		</script>
+	</body>
+</html>
