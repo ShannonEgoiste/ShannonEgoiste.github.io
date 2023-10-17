@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body{
+			margin:0;padding:0;
+			background-color:#ffebf5;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			color:#333;
+		}
+		.content{
+			position: fixed;
+			width: 100%;height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		table{
+ 			border-collapse: collapse;
+			border-radius: 10px;
+			background: #ffebf5;
+			box-shadow:  5px 5px 6px #c2b3ba,
+						-5px -5px 6px #ffffff;
+			width: 50%;
+		}
+		table th{
+			padding: 20px;
+		}
+		table td{
+			padding: 10px 20px;
+		}
+		tbody tr:nth-child(even){
+			background-color:rgba(255,255,255,0.2);
+		}
+		tbody tr:hover{
+			background-color:rgba(255,255,255,0.4);
+		}
+
+		table th,td{
+			text-align: left;
+			width: 33%;
+			border-bottom: 1px solid rgba(0,0,0,0.1);
+		}
+
+		.button{
+			border-radius: 12px;
+			padding: 20px;
+			background: #ffebf5;
+			box-shadow:  5px 5px 6px #c2b3ba,
+						-5px -5px 6px #ffffff;
+			user-select: none;
+			cursor: pointer;
+		}
+		.button:hover{
+			border-radius: 12px;
+			background: linear-gradient(145deg, #e6d4dd, #fffbff);
+			box-shadow:  5px 5px 11px #b5a7ae,
+						-5px -5px 11px #ffffff;
+		}
+		.button:active{
+			border-radius: 12px;
+			background: #ffebf5;
+			box-shadow: inset 5px 5px 11px #b5a7ae,
+						inset -5px -5px 11px #ffffff;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="content">
+		<div style="width: 100%;display:flex;justify-content:center;">
+			<table>
+				<thead>
+					<tr>
+						<th>Pseudo</th>
+						<th>Timestamp</th>
+					</tr>
+				</thead>
+				<tbody class="classement">
+				</tbody>
+			</table>
+		</div>
+		<div  style="width: 100%;display:flex;justify-content:center;margin-top: 20px;">
+			<div class="button" onclick="reset()">
+				RESET
+			</div>
+		</div>
+	</div>
+
+	
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+	<script>
+		var classement = document.querySelector(".classement");
+		const supabaseUrl = 'https://ipfwvnmbhodbrbtplxrs.supabase.co';
+		const supabaseKey = location.href.substring(location.href.indexOf("?key=")+5);
+		const client = supabase.createClient(supabaseUrl, supabaseKey);
+		
+		const Buzzer = client.channel('custom-all-channel')
+		.on(
+			'postgres_changes',
+			{ event: '*', schema: 'public', table: 'Buzzer' },
+			(payload) => {
+				console.log(payload);
+				if(payload.eventType == "INSERT"){
+					setDataInTable(payload.new);
+				}
+			}
+		)
+		.subscribe()
+
+		async function readAll(){
+			await client
+			.from('Buzzer')
+			.select('*').then(function(x){
+				x.data.forEach((elem)=>{
+					setDataInTable(elem);
+				});
+
+
+			});
+		}
+		readAll();
+
+		function setDataInTable(elem){
+			var cdate = new Date(elem.time);
+			var hour = cdate.getHours();
+			var minute = cdate.getMinutes();
+			var second = cdate.getSeconds();
+			var millis = cdate.getMilliseconds();
+
+			classement.innerHTML+="<tr><td>"+elem.name+"</td><td><span style='color:rgba(0,0,0,0.4)'>"+hour+":"+minute+"</span>&nbsp;<span style='font-size:20px'>"+second+"</span>'"+millis+"</td></tr>";
+		}
+
+		async function reset(){
+			const { error } = await client
+			.from('Buzzer')
+			.delete().neq("id",0);
+			classement.innerHTML = "";
+		}
+
+
+	</script>	
+</body>
+</html>

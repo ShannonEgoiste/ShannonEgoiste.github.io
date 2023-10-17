@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body{
+			background-color:#ffebf5;
+			padding:0;margin: 0;
+			font-family:Arial, Helvetica, sans-serif;
+			width:100%;
+			height: 100%;
+		}
+		.d-none{
+			display: none !important;
+		}
+
+		.cooldown{
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			z-index: 10;
+			background-color: rgba(0,0,0,0.5);
+			color: rgb(240, 205, 221);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 15rem;
+		}
+		input{
+			width: 90%;
+			height: 32px;
+			font-size: 32px;
+			outline: none;
+			border:none ;
+			border-bottom: 3px solid rgb(235, 96, 193);
+			background-color: transparent;
+		}
+		
+		.button img{
+			mix-blend-mode: multiply;
+		}
+
+		.content{
+			position: fixed;
+			width: 100%;height: 100%;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+		}
+		.button{
+			height: 60%;
+			aspect-ratio:1;
+			border-radius: 100%;
+			background: #ffebf5;
+			box-shadow:  5px 5px 6px #c2b3ba,
+						-5px -5px 6px #ffffff;
+			cursor: pointer;
+			overflow: hidden;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.button:hover{
+			background: linear-gradient(145deg, #e6d4dd, #fffbff);
+			box-shadow:  5px 5px 11px #b5a7ae,
+						-5px -5px 11px #ffffff;
+		}
+		.button:active{
+			background: #ffebf5;
+			box-shadow: inset 5px 5px 11px #b5a7ae,
+						inset -5px -5px 11px #ffffff;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="content">
+		<div style="height:70%;display:flex;justify-content: center; align-items: center;">
+			<div class="button" onclick="buzz()">
+				<img src="collabStaLogo.png" width="100%" style="transform:translateX(2%)"/>
+			</div>
+		</div>
+		<div style="height:30%;display:flex;justify-content: center; align-items: center;">
+			<div style="width:100%;display:flex;flex-direction:column;justify-content: center; align-items: center;">
+				<input type="text" class="name" placeholder="Pseudo..." onchange="setName()"/>
+				<div class="error d-none" style="font-size:18px;color:#96020e">merci de renseigner votre pseudo</div>
+			</div>
+		
+		</div>
+	</div>
+
+	<div class="cooldown d-none">
+	</div>
+
+	
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+	<script>
+		var cooldown = 0;
+		var classement = document.querySelector(".classement");
+
+		const supabaseUrl = 'https://ipfwvnmbhodbrbtplxrs.supabase.co';
+		const supabaseKey = location.href.substring(location.href.indexOf("?key=")+5);
+		const client = supabase.createClient(supabaseUrl, supabaseKey);
+		
+		async function buzz(){
+			if(cooldown > 0) return;
+			var name = document.querySelector(".name").value;
+			if(name ==""){
+				document.querySelector(".error").classList.remove("d-none");
+
+				return;
+			}
+
+			const { data, error } = await client
+			.from('Buzzer')
+			.insert([
+				{ name: name},
+			])
+			.select();
+			cooldown= 5;
+			document.querySelector(".cooldown").innerHTML = cooldown+"s";
+			document.querySelector(".cooldown").classList.remove("d-none");
+			var intervalCooldown = setInterval(()=>{
+				cooldown--;
+				document.querySelector(".cooldown").innerHTML = cooldown+"s";
+				if(cooldown < 0){
+					clearInterval(intervalCooldown);
+			document.querySelector(".cooldown").classList.add("d-none");
+				}
+			},1000);
+		}
+
+		async function reset(){
+			const { error } = await client
+			.from('Buzzer')
+			.delete()
+		}
+
+		function setName(){
+			document.querySelector('.error').classList.add('d-none');
+			localStorage.setItem("nom", document.querySelector(".name").value);
+		}
+
+		var currentName = localStorage.getItem("nom");
+		if(currentName){
+			document.querySelector(".name").value = currentName;
+		}
+	</script>
+</body>
+</html>
