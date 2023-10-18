@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;padding: 0;
+		}
+
+		body{
+			background-color: #000;
+			overflow:hidden;
+		}
+
+		.option{
+			position: fixed;
+			left: 0;
+			top:0;
+		}
+	</style>
+</head>
+<body>
+	<div class="option">
+		<input type="number" value="1" class="rotationSpeed" onchange="changeRotationSpeed(this)"/>
+		<button onclick="clearStar()">ClearStar</button>
+		<button onclick="document.querySelector('.option').remove()">hide Option</button>
+	</div>
+
+	<canvas>
+
+
+
+	</canvas>
+	<script>
+		const TORAD = 0.0174533;
+		var canvas = document.querySelector("canvas");
+		var ctx = canvas.getContext('2d');
+
+
+
+		var appearanceRate = 10;
+		var frameCounter = appearanceRate;
+		var baseRotation = 0;
+		var rotationSpeed = 1;
+		var listOfStarcoordinate = [];
+		function changeRotationSpeed(d){
+			rotationSpeed = d.value/10;
+
+		}
+		function clearStar(){
+			console.log("test");
+			listOfStarcoordinate = [];
+		}
+
+		function loop(){
+			ctx.clearRect(0,0,canvas.width,canvas.height);
+			//ctx.fillStyle = "rgba(0,0,0,0.2)";
+			//ctx.fillRect(0,0,canvas.width,canvas.height);
+
+			frameCounter--;
+			if(frameCounter < 0){
+				var x = Math.floor(Math.random()*canvas.width);
+				var y = Math.floor(Math.random()*canvas.height);
+				var size = 10+Math.floor(Math.random()*40);
+				listOfStarcoordinate.push({x:x,y:y,size:size});
+				frameCounter = appearanceRate;
+			}
+
+			listOfStarcoordinate.forEach((x)=>{
+				drawAStar(x.x,x.y,x.size);
+			});
+
+			baseRotation+=TORAD*rotationSpeed;
+
+			requestAnimationFrame(loop);
+		}
+
+		loop();
+
+
+		function drawAStar(bx,by,starSize){
+			var starPointOrder = [3,1,4,2,0];
+			var star = [];
+
+			ctx.beginPath();
+			ctx.strokeStyle = "rgb("+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+")";
+			var a = bx+Math.cos(baseRotation+0*72*TORAD)*starSize;
+			var o = by+Math.sin(baseRotation+0*72*TORAD)*starSize;
+			ctx.moveTo(a,o);
+			starPointOrder.forEach((x)=>{
+				a = bx+Math.cos(baseRotation+x*72*TORAD)*starSize;
+				o = by+Math.sin(baseRotation+x*72*TORAD)*starSize;
+				ctx.lineTo(a,o);
+			});
+
+			ctx.stroke();
+		}
+
+		setFullSize();
+		window.addEventListener("resize",(e)=>{
+			setFullSize();
+
+		});
+
+		function setFullSize(){
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+		}
+
+
+	</script>	
+</body>
+</html>
