@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>		
+        body{
+            background-color: #FFF;
+			font-family: sans-serif;
+        }
+        canvas, img{
+            width: 100%;
+        }
+        .container{
+            position: fixed;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .box{
+			max-width: 80vw;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #ffffff, #e6e6e6);
+            box-shadow:  20px -20px 60px #d9d9d9, -20px 20px 60px #ffffff;	
+			padding: 20px;
+		}
+
+		.dragArea{
+			padding: 50px;
+			border-radius: 20px;
+			aspect-ratio: 1;
+			border: 3px solid rgba(0,0,0,0.5);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: rgba(0,0,0,0.5);
+			font-size: 120%;
+			cursor: pointer;
+		}
+
+		.workArea{
+			width: 50vw;
+		}
+
+		.btn{
+			color:#888;
+			cursor: pointer;
+			overflow: hidden;
+			padding: 20px;
+			border-radius: 10px; 
+			background: linear-gradient(45deg, #ffffff, #e6e6e6);
+			box-shadow:  8px 8px 18px #b3b3b3, -8px -8px 18px #ffffff;
+		}
+
+		.btn:hover{
+			background: linear-gradient(145deg, #e6e6e6, #ffffff);
+		}
+		.btn:active{
+			box-shadow: inset 20px 20px 60px #d9d9d9,
+            inset -20px -20px 60px #ffffff;
+		}
+
+		.frame > canvas {
+			max-height: 33vh;
+			object-fit:scale-down;
+			--opacity: 0.05;
+		}
+
+		.inputArea{
+			display: flex;
+			flex-direction: row;
+			justify-content: center; 
+			align-items: center;
+			margin: 5px;
+		}
+
+		.d-none{
+			display: none;
+		}
+
+		.loading{
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			background-color: #FFFFFF;
+			z-index: 10;
+		}
+		.credit{
+			position: fixed;
+			bottom: 10px;
+			left: 10px;
+			color:#999;
+			font-size: 12px;
+		}
+		a{text-decoration: none;color:inherit}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="dragArea">
+				<span><b>Choose a file</b> or <b>drop it here</b></span>
+				<input type="file" class="imgFileInput" style="display: none;"/>
+			</div>
+			<div class="workArea d-none">
+				<div>
+					<div class="frame">
+						<canvas class="source"></canvas>
+						<canvas class="result d-none"></canvas>
+					</div>
+					<div class="inputArea">
+						<div class="btn">remove&nbsp;background</div>
+						<input type="color" value="#FFFFFF" style="margin-left: 25px;" class="baseColor"/>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+	<div class="credit">made by <a href="https://twitter.com/Shannon_Egoiste">Shannon Egoiste</a></div>
+
+
+    <script>
+		var draga = document.querySelector(".dragArea");
+		var workArea = document.querySelector(".workArea");
+		var imgdisplay = workArea.querySelector("img");
+		
+		var source_canvas = document.querySelector(".source");
+        var source_ctx = source_canvas.getContext("2d",{willReadFrequently:true});
+
+		draga.addEventListener("click",()=>{
+			document.querySelector(".imgFileInput").click();
+		});
+
+		draga.addEventListener("dragover",(e)=>{
+			e.preventDefault();
+			draga.style.borderStyle ="dashed";
+		});
+
+		draga.addEventListener("dragleave",()=>{
+			draga.style.borderStyle ="solid";
+		});
+
+		draga.addEventListener("drop",(e)=>{
+			e.preventDefault();
+			fileHandler(e.dataTransfer.files[0]);
+		});
+
+		document.querySelector(".imgFileInput").addEventListener("change",(e)=>{
+			fileHandler(e.target.files[0]);
+		});
+
+
+		function fileHandler(file){
+			var img = new Image();
+			img.src = URL.createObjectURL(file);
+			img.onload = ()=>{
+				source_canvas.width = img.width;
+				source_canvas.height = img.height;
+				source_ctx.drawImage(img,0,0);
+
+
+			}
+			draga.classList.add("d-none");
+			workArea.classList.remove("d-none");
+		}
+
+		document.querySelector(".btn").addEventListener("click",()=>{
+			document.querySelector(".inputArea").classList.add("d-none");
+			work();
+		});
+
+        function work(){
+			var canvas = document.querySelector(".result");
+			var ctx = canvas.getContext("2d",{willReadFrequently:true});
+			canvas.width = source_canvas.width;
+			canvas.height = source_canvas.height;
+
+			var baseGrey = parseInt(document.querySelector(".baseColor").value.substr(1,2), 16);
+			console.log(baseGrey);
+
+			for(var y = 0; y < canvas.height;y++){
+                for(var x = 0; x < canvas.width;x++){
+                    var pix = source_ctx.getImageData(x,y,1,1).data;
+                    var grey = Math.floor((pix[0]+pix[1]+pix[2])/3);
+                    var alpha = -1*(grey-baseGrey);
+                    const newPix = ctx.createImageData(1,1);
+                    newPix.data[3] = alpha;
+
+                    ctx.putImageData(newPix,x,y);
+                }
+            }
+			canvas.classList.remove("d-none");
+			source_canvas.classList.add("d-none");
+        }
+
+
+
+
+    </script>
+
+</body>
+</html>
