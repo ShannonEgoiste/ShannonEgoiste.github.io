@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="customSelect.css" >
+	<link rel="stylesheet" href="ico.css" >
+	<style>
+		body{
+			padding: 0;margin: 0;
+			background-color: #222;
+			font-family: sans-serif;
+			color: #FFF;
+		}		
+		::-webkit-scrollbar {
+			width: 4px;
+		}
+		::-webkit-scrollbar-track {
+			background: #333;
+		}
+		::-webkit-scrollbar-thumb {
+			background: #888;
+		}
+		::-webkit-scrollbar-thumb:hover {
+			background: #555; 
+		}
+
+		.d-none{
+			display: none!important;
+		}
+		.wrapper{
+			position: fixed;
+			display: flex;
+			width: 100%;
+			height: 100%;
+			justify-content: center;
+			align-items: center;
+			flex-direction:	column;
+		}
+		.content{
+			width: 400px;
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+		}
+
+		.flagArea{
+			position: relative;
+		}
+
+		.flagArea > canvas{
+			width: 80%;
+			display: block;
+			border-radius: 10px;
+			border: 2px solid rgba(255,255,255,0.5);
+		}
+
+		.flagArea .working{
+			z-index: 10;
+			position: absolute;
+			opacity: 0;
+		}
+
+		.guess > div{
+			display: grid;
+			grid-template-columns: 60% 15% 25%;
+			background-color: rgba(0,0,0,0.2);
+			border:1px solid #FFF;
+			border-radius: 10px;
+			margin: 20px 0;
+			justify-items: center;
+			align-items: center;
+		}
+		
+		.guessLine > div{
+			padding: 5px 0;
+		}
+
+		.guessPercent{
+			text-align: center;
+			width: 100%;
+			border-left:  1px solid rgba(255,255,255,0.2);
+			border-right: 1px solid rgba(255,255,255,0.2);
+		}
+
+		.guessPercent.victory{
+			color:rgb(187, 255, 77);
+		}
+
+		.guessname{
+			padding-left: 10px;
+			word-wrap: break-word;
+			word-break: break-all;
+		}
+		.guess img{
+			display: block;
+		}
+
+		.header{
+			width: 100%;
+			padding: 20px 0;
+			background-color: #000;
+			display: grid;	
+			grid-template-columns: 30% 40% 10% 20%;
+			justify-items: center;
+			align-items: center;
+			margin-bottom:20px;
+		}
+
+		.header .menu{
+			display: flex;
+			flex-direction: row;
+		}
+		.header .menu > div{
+			margin:0 10px;
+		}
+
+		.footer{
+			margin-top: 20px;
+		}
+
+		.hideToast.toast{
+			top: -100vh !important;
+		}
+		
+		.hideToast.victory.background{
+			opacity: 0;
+  			visibility: hidden;
+		}
+
+		.victory.background{
+			position:fixed;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.8);
+			opacity: 100%;
+			transition: opacity 1s;
+			visibility: visible;
+		}
+
+		.victory.toast{
+			position:fixed;
+			top:30vh;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			transition: top 1s;
+
+			border-radius: 10px;
+			background-color: #FFF;
+			color:#000;
+			display: flex;
+			flex-direction: column;
+			padding: 30px;
+			box-shadow: rgb(0, 0, 0) 5px 5px 20px 0px;
+		}
+
+		.settingsModal{
+			position:fixed;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.8);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.settingsWindow{
+			border-radius: 10px;
+			background-color: #FFF;
+			color:#000;
+			display: flex;
+			flex-direction: column;
+			box-shadow: rgb(0, 0, 0) 5px 5px 20px 0px;
+			padding: 30px;
+			min-width: 50vw;
+		}
+
+		fieldset{
+			word-wrap: break-word;
+			word-break: break-all;
+			margin-bottom: 20px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<div></div>
+			<div>FLAGLE</div>
+			<div class="menu">
+				<div class="ico i-settings"></div>
+				<div class="ico i-reload"></div>
+				<div class="ico i-reveal"></div>
+			</div>
+		</div>
+		<div class="content">
+			<div style="display: flex; justify-content: center;" class="flagArea">
+				<canvas class="mask" height="160" height="256"></canvas>
+				<canvas class="working"></canvas>
+			</div>
+			<div class="guess" style="max-height: 50vh;overflow-y: auto;">
+			</div>
+			<div class="countrySelect">
+				<div class="listCountry d-none"><table><tbody></tbody></table></div>
+				<div style="display: flex;flex-direction: row;"><input type="text" class="userFlagInput" disabled/><button disabled class="countrySelectButton">Submit</button></div>
+			</div>
+			<div class="footer"></div>
+		</div>			
+	</div>
+	<div class="settingsModal d-none">
+		<div class="settingsWindow">
+			<div style="width:100%;border-bottom: 1px solid #555;font-size:x-large;margin-bottom: 20px;">
+				settings
+				<span style="float:right;cursor:pointer" class="settingsExitTimesButton">&times;</span>
+			</div>
+			<fieldset class="byContinent" style="display: flex; flex-direction:column;">
+				<legend>By Continent <span style="font-size: 14;color:#888">(<span class="continentFlagSelected">254</span> flag selected)</span></legend>
+				<fieldset>
+					<legend><label><input class="selectALL" type="checkbox"/>Europe</label></legend>
+					<label><input type="checkbox" data-count="20"/>Northern Europe</label>
+					<label><input type="checkbox" data-count="10"/>Eastern Europe</label>
+					<label><input type="checkbox" data-count="17"/>Southern Europe</label>
+					<label><input type="checkbox" data-count="9"/>Western Europe</label>
+				</fieldset>
+				<fieldset>
+					<legend><label><input class="selectALL" type="checkbox"/>Asia</label></legend>					
+					<label><input type="checkbox" data-count="8"/>Eastern Asia</label>
+					<label><input type="checkbox" data-count="5"/>Central Asia</label>
+					<label><input type="checkbox" data-count="11"/>South-eastern Asia</label>
+					<label><input type="checkbox" data-count="18"/>Western Asia</label>
+					<label><input type="checkbox" data-count="9"/>Southern Asia</label>
+				</fieldset>
+				<fieldset>
+					<legend><label><input class="selectALL" type="checkbox"/>Africa</label></legend>
+						<label><input type="checkbox" data-count="22"/>Eastern Africa</label>
+						<label><input type="checkbox" data-count="9"/>Middle Africa</label>
+						<label><input type="checkbox" data-count="7"/>Northern Africa</label>
+						<label><input type="checkbox" data-count="5"/>Southern Africa</label>
+						<label><input type="checkbox" data-count="17"/>Western Africa</label>
+				</fieldset>
+				<fieldset>
+					<legend><label><input class="selectALL" type="checkbox"/>Oceania</label></legend>
+					<label><input type="checkbox" data-count="6"/>Australasia</label>
+					<label><input type="checkbox" data-count="5"/>Melanesia</label>
+					<label><input type="checkbox" data-count="8"/>Micronesia</label>
+					<label><input type="checkbox" data-count="10"/>Polynesia</label>
+				</fieldset>
+				<fieldset>
+					<legend><label><input class="selectALL" type="checkbox"/>America</label></legend>
+					<label><input type="checkbox" data-count="28"/>Caribbean</label>
+					<label><input type="checkbox" data-count="8"/>Central America</label>
+					<label><input type="checkbox" data-count="5"/>Northern America</label>
+					<label><input type="checkbox" data-count="16"/>South America</label>
+				</fieldset>
+				<fieldset>
+					<legend>Other</legend>
+					<label><input type="checkbox" data-count="3"/>International</label>
+					<label><input type="checkbox" data-count="50"/>USA State</label>
+				</fieldset>
+				<div style="display: flex;flex-direction:row;justify-content:space-evenly">
+					<button style="width:20%" onclick="selectEverything(true)">Select All</button>
+					<button style="width:20%" onclick="selectEverything(false)">Unselect All</button>
+				</div>
+			</fieldset>
+			<fieldset style="display: flex; flex-direction:column">
+				<legend>Game Settings</legend>
+				<label style="margin-bottom: 20px;"><input type="checkbox" id="show_flag"/>Show flag in selection input</label>
+				<label style="margin-bottom: 20px;">Flag Comparison Precision<input id="comparison_precision" type="range" min="0" max="80"/></label>
+				<label>Number of guess <input id="number_flag" type="number" min="0" max="10"/></label>
+			</fieldset>
+			<div style="display: flex;flex-direction:row;justify-content:space-evenly">
+				<button style="width:20%" class="settingSaveButton">Save</button>
+				<button style="width:20%" class="settingsCancelButton">Cancel</button>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="victory background hideToast"></div>
+	<div class="victory toast hideToast">
+		<div style="font-size: 24px;text-align: center;" class="resultOfGuess">
+			Congratulations !
+		</div>
+		<div style="font-size: 14px;text-align: center;color:#555;margin: 10px;">
+			the country was
+		</div>
+		<div style="display: flex;justify-content: center;margin-bottom:20px;">
+			<canvas style="display: block;height: 64px;border: 1px solid #333;border-radius: 5px;" class="ref"></canvas>
+		</div>
+		<div style="font-size: 24px;text-align: center;" class="toGuessCountryName"></div>
+
+		<button style="margin-top: 10px;width: 100%;" class="retryButton">retry</button>
+	</div>
+	
+
+	<script>
+		const {hostname} = window.location;
+
+		function getFlagLink(iso){
+			if(hostname == "localhost"){
+				return "svg/"+iso+".svg";
+			}else{
+				return "https://flagcdn.com/"+iso+".svg"
+			}
+		}
+
+		function updateFlagSelectedNumber(){
+			var nb = 0;
+			document.querySelectorAll("[data-count]:checked").forEach((x)=>{
+				nb+=Number(x.dataset.count);
+			});
+			var howManyByContinent = [4,5,5,4,4,2];
+			document.querySelectorAll(".byContinent > fieldset").forEach((x,i)=>{
+				var category = x.querySelector(".selectALL");
+				if(category) category.checked = x.querySelectorAll("input:not(.selectALL):checked").length == howManyByContinent[i];
+			});
+
+			if(nb == 0) document.querySelector(".settingSaveButton").setAttribute("disabled",true);
+			else document.querySelector(".settingSaveButton").removeAttribute("disabled");
+
+			document.querySelector(".continentFlagSelected").innerHTML = nb;
+		}
+
+		document.querySelectorAll(".byContinent").forEach((x)=>{
+			x.addEventListener("change",(e)=>{
+				var target = e.srcElement;
+				if(target.classList.contains("selectALL")){
+					var checked = target.checked;
+					target.closest("fieldset").querySelectorAll("input").forEach((elem)=>{
+						elem.checked = checked;
+					});
+				}else{
+					
+				}
+				
+				updateFlagSelectedNumber();
+			});
+		});
+
+		function selectEverything(checked){
+			if(checked) document.querySelectorAll(".selectALL:not(:checked)").forEach((x)=>x.click());
+			else 		document.querySelectorAll(".selectALL:checked").forEach((x)=>x.click());
+		}
+
+
+	</script>
+	<script src="imgLogic.js"></script>
+	<script src="customSelect.js"></script>
+	<script type="module">
+		import {getListCountry,isoFromName} from "./isoCode.js";
+
+		var country;
+		var settings = JSON.parse(window.localStorage.getItem("settings"));
+		if(settings == undefined){
+			settings = {"region":["Northern Europe","Eastern Europe","Southern Europe","Western Europe","Eastern Asia","Central Asia","South-eastern Asia","Western Asia","Southern Asia","Eastern Africa","Middle Africa","Northern Africa","Southern Africa","Western Africa","Australasia","Melanesia","Micronesia","Polynesia","Caribbean","Central America","Northern America","South America"],"nb_guess":"6","show_flag":true,"comparison_precision":100};
+			window.localStorage.setItem("settings", JSON.stringify(settings));
+		}
+		var counter = 0;
+		var listCountry = getListCountry(settings.region);
+
+		for(var i = 0 ; i < settings.nb_guess;i++){
+			document.querySelector(".guess").innerHTML+=
+				`<div class="guessLine"><div class="guessname"></div><div class="guessPercent">&nbsp;</div><div><img height="32px" src=""/></div></div>`;
+		}
+
+
+		document.querySelector(".ico.i-reload").addEventListener("click",()=>restart());
+		document.querySelector(".retryButton").addEventListener("click",()=>{restart()});
+		document.querySelector(".ico.i-settings").addEventListener("click",()=>{
+			document.querySelectorAll("[data-count]").forEach(x=>{
+				x.checked = settings.region.includes(x.parentNode.innerText);
+			});
+
+			document.querySelector("#number_flag").value = settings.nb_guess;
+			document.querySelector("#show_flag").checked = settings.show_flag;
+			document.querySelector("#comparison_precision").value = 100-settings.comparison_precision;
+			updateFlagSelectedNumber();
+			document.querySelector(".settingsModal").classList.remove("d-none");
+		});
+	
+		document.querySelector(".settingSaveButton").addEventListener("click",()=>closeSetting(true));
+		document.querySelector(".settingsExitTimesButton").addEventListener("click",()=>closeSetting(false));
+		document.querySelector(".settingsCancelButton").addEventListener("click",()=>closeSetting(false));
+		function closeSetting(save){
+			var set = document.querySelector(".settingsModal");
+			if(save){
+				settings = {region:[],nb_guess:0,show_flag:true};
+				document.querySelectorAll("[data-count]:checked").forEach(x=>{
+					settings.region.push(x.parentNode.innerText);
+				});
+
+				settings.nb_guess = document.querySelector("#number_flag").value;
+				settings.show_flag =  document.querySelector("#show_flag").checked;
+				settings.comparison_precision = 100-document.querySelector("#comparison_precision").value;
+				
+				window.localStorage.setItem("settings",JSON.stringify(settings));
+
+				window.location.reload();
+			}
+
+			set.classList.add("d-none");
+		}
+
+		document.querySelector(".ico.i-reveal").addEventListener("click",()=>{
+				document.querySelector(".resultOfGuess").innerHTML="You'll do better next time !";
+				document.querySelector(".userFlagInput").setAttribute("disabled",true);
+				document.querySelector(".countrySelectButton").setAttribute("disabled",true);
+				document.querySelectorAll(".victory").forEach(x=>x.classList.remove("hideToast"));
+		});
+
+
+		
+		function fillGuessLine(dom,name,percent,src){
+			dom.querySelector(".guessname").innerHTML = name;
+			dom.querySelector(".guessPercent").innerHTML = percent;
+			dom.querySelector(".guessPercent").classList.remove("victory");
+			dom.querySelector("img").src = src;
+		}
+
+		document.querySelector(".victory.background").addEventListener("click",()=>{
+			document.querySelectorAll(".victory").forEach(x=>x.classList.add("hideToast"));
+		});
+
+		function restart(){
+			document.querySelectorAll(".victory").forEach(x=>x.classList.add("hideToast"));
+			counter = 0;
+
+			setTimeout(()=>{
+				country = listCountry[Math.floor(Math.random()* listCountry.length)];	
+				document.querySelector(".toGuessCountryName").innerHTML = country.n;
+				init(country.i);
+				document.querySelectorAll(".guessLine").forEach((x)=>{
+					fillGuessLine(x,"","&nbsp;","");
+				});
+				document.querySelector(".userFlagInput").removeAttribute("disabled");
+				document.querySelector(".countrySelectButton").removeAttribute("disabled");
+			},1000);
+		}
+
+		function makeAGuess(){
+			var value = document.querySelector(".userFlagInput").value;
+			document.querySelector(".userFlagInput").value = "";
+
+			var isoCode = isoFromName(value);
+			if(isoCode == -1) return;
+			
+			var percent = compareImage(isoCode,settings.comparison_precision);
+			
+			var workingCanvas = document.querySelector("canvas.working");
+			workingCanvas.style.opacity = "100%";
+			var guessLine = document.querySelectorAll(".guessLine")[counter];
+			fillGuessLine(guessLine,value,0+"%", getFlagLink(isoCode));
+			var percentCounter = 0;
+			var intervalprogress = Math.max(1,percent/100);
+			var inter = setInterval(()=>{
+				var percentDom = guessLine.querySelector(".guessPercent");
+				percentCounter+=intervalprogress;
+				if(percentCounter > percent){
+					var iOpacity = 100;
+					var i2 = setInterval(()=>{
+						if(iOpacity<=0){
+							clearInterval(i2);
+							workingCanvas.style.opacity = 0;
+							return;
+						}
+						workingCanvas.style.opacity = iOpacity+"%";
+						iOpacity--;
+					},10);
+					clearInterval(inter);
+					return;
+				}
+				percentDom.innerHTML=Math.round(percentCounter)+"%";
+			},10);
+
+			if(isoCode == country.i){
+				document.getElementsByClassName("guessPercent")[counter].classList.add("victory");
+				document.querySelector(".resultOfGuess").innerHTML="Congratulations !!";
+				document.querySelector(".userFlagInput").setAttribute("disabled",true);
+				document.querySelector(".countrySelectButton").setAttribute("disabled",true);
+				document.querySelectorAll(".victory").forEach(x=>x.classList.remove("hideToast"));
+			}
+			counter++;
+			if(counter>=settings.nb_guess){
+				document.querySelector(".resultOfGuess").innerHTML="You'll do better next time !";
+				document.querySelector(".userFlagInput").setAttribute("disabled",true);
+				document.querySelector(".countrySelectButton").setAttribute("disabled",true);
+				document.querySelectorAll(".victory").forEach(x=>x.classList.remove("hideToast"));
+			}
+		}
+
+		
+		document.querySelector(".countrySelectButton").addEventListener("click",()=>makeAGuess());
+		flagSelector(listCountry,()=>makeAGuess(),settings.show_flag);
+		
+		restart();
+
+
+
+		
+
+
+
+
+	</script>
+</body>
+</html>
