@@ -1,30 +1,86 @@
-<!--
-<!doctype html>
-<html lang="fr">
-	<head>
-		<meta charset="utf-8">
-		<title>HUB</title>
-		<link rel="stylesheet" href="css/style.css" >
-		<link href='https://fonts.googleapis.com/css?family=Amaranth' rel='stylesheet'>
-	</head>
-	<body>
-		<img id='TTGLBG' src='res/TTGL5.gif'></img>
-		<div id='listContainer'>
-			<h1></h1>
-			<h2>link hub</h2>
-			<div id='list'>
-				<ul>
-					<a href='/AllOp/'><li>All Gundam OP</li></a>
-					<a href='/JDRSheet/'><li>JDRSheet</li></a>
-					<a href='/Riddle/'><li>Riddle</li></a>
-					<a href='/world/'><li>world test</li></a>
-					
-				</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body{
+			background-color: rgb(27, 21, 32);
+		}
+
+		main{
+			position: fixed;
+			width: 100%;height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.container{
+			filter: drop-shadow(0 0 20px rgba(255,255,0,1));
+			max-height: 80%;
+			max-width: 50%;
+			padding: 20px 100px;
+			border: 2px solid rgb(255, 255, 0);
+			overflow-y: scroll;
+			mask-image:linear-gradient(transparent 0%, #FFF 0%, #FFF 90%, transparent 100%);
+		}
+
+		.linkarea{
+			display: flex;
+			flex-direction: column;
+		}
+
+		.linkarea > a{
+			font-family: 'consolas', sans-serif;
+			color: rgb(255, 255, 0);
+			margin: 10px;
+			padding: 10px;
+			text-decoration: none;
+			border: 2px solid rgb(255, 255, 0);
+		}
+		
+		::-webkit-scrollbar { display: none; }
+
+	</style>
+</head>
+<body>
+	<main>
+		<div class="container">
+			<div class="linkarea">
 			</div>
 		</div>
+	</main>
 
-			
-			
-	</body>
+
+<script>
+var linkarea = document.querySelector(".linkarea");
+fetch(`https://api.github.com/repos/shannonegoiste/shannonegoiste.github.io/git/trees/master`).then((res)=>{
+	return res.json();
+}).then((data)=>{
+	console.log(data.tree);
+	data.tree.forEach((x)=>{
+		if(x.type == "tree"){
+			var link = document.createElement("a");
+			link.href = x.path;
+			link.innerHTML = x.path;
+			linkarea.appendChild(link);
+		}
+	})
+});
+
+var container = document.querySelector(".container");
+container.addEventListener("scroll", (e) => {
+	var scrollPercent = Math.round(container.scrollTop / (container.scrollHeight-container.clientHeight)*100);
+	var minimum = Math.min(10,scrollPercent);
+	var maximum = Math.max(90,scrollPercent);
+
+	container.style.maskImage = "linear-gradient(transparent 0%, #FFF "+minimum+"%, #FFF "+maximum+"%, transparent 100%)";
+});
+
+</script>
+
+</body>
 </html>
--->
