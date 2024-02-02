@@ -1,0 +1,99 @@
+.info{
+	margin: 20px;
+	position: fixed;
+	background-color: rgba(255,255,255,0.5);
+	backdrop-filter: blur(10px);
+	border-radius: 20px;
+	overflow: hidden;
+	width:calc(50% - 40px);
+	color: #FFF;
+	text-shadow: 1px 1px 5px #000;
+	z-index: 100;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+}
+.info > *:not(.colorSeparator){
+	margin: 20px;
+}
+.ocName{
+	margin-left: 20px;
+	font-size: 24px;
+}	
+
+.colorSeparator{
+	width: 100%;
+	height: 10px;
+	background: linear-gradient(90deg, rgb(30, 131, 122) 50%,rgb(83, 77, 71) 50%);
+}
+
+table{
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+table td{
+	padding: 15px;
+	border-bottom: 2px solid rgb(30, 131, 122);
+	border-top: 2px solid rgb(30, 131, 122);
+}
+.identity table td:first-child{
+	text-align: start;
+}
+.identity table td:last-child{
+	text-align: end;
+}
+
+.colorcell{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.reference{
+	padding: 0;
+}
+.reference a{
+	padding: 15px;
+	position: relative;
+	display: flex;
+	flex-grow: 2;
+	width: calc(100% - 30px);
+	cursor: pointer;
+	user-select: none;
+	background-color: rgba(255,255,255,0.2);
+}
+.reference.open a:after{
+	rotate: -90deg;
+}
+
+.reference a:after{
+	padding: 0 15px;
+	position: absolute;
+	right:0;
+	content: "◀";
+	transition: 0.5s;
+}
+.collapse{
+	box-shadow: inset 0 10px 8px -10px #000;
+	overflow-y: scroll;
+	padding: 0px 20px;
+	display: flex;
+	flex-flow:row wrap;
+	justify-content: space-evenly;
+	max-height:0;
+	transition: 0.5s;
+}
+
+.reference.open .collapse{
+	padding: 10px 10px;
+	height: 100%;
+	max-height: 300px;
+}
+
+.collapse > img {
+	width: 128px;
+	height: 128px;
+	border-radius: 100%;
+	border: 4px solid #FFF;
+	margin: 2px;
+	object-fit:cover;
+	cursor: pointer;
+}
