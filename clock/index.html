@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body{
+			background-color: #202020;
+			padding: 0;margin: 0;
+		}	
+		.center{
+			position: fixed;
+			width: 100%;height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.canvas{
+			aspect-ratio: 1;
+			max-width: 80%;
+		}
+		.option{
+			position:fixed;
+			top: 20px;left: 20px;
+			padding:20px;
+			color: #FFF;
+			font-family: sans-serif;
+			display: flex;
+			flex-direction: column;
+			border-radius: 12px;
+			background: #202020;
+			box-shadow:  33px 33px 67px #0d0d0d,
+						-33px -33px 67px #333333;
+		}
+		.option label{
+			margin: 10px;
+		}
+
+
+	</style>
+
+
+</head>
+<body>
+	<div class="center">
+		<canvas class="canvas" width="720" height="720"></canvas>
+	</div>
+	<div class="option">
+		<label><input onchange="change24Time(this.value)" type="checkbox"/> 24h time</label>
+		<label><input onchange="changeColor(this.value)" type="color" value="#FFFFFF"/> color</label>
+	</div>
+
+	<script>
+		var canvas = document.querySelector(".canvas");
+		var ctx = canvas.getContext("2d");
+		
+		const twelfthAngular = 2*Math.PI/12;
+		const sixtiethAngular =  2*Math.PI/60;
+		const hourNormalize = Math.PI*1.5;
+		var canvasCenter = canvas.width/2;
+
+		var on12hourSystem = true;
+		var color = "#FFF";
+		function change24Time(val){
+			on12hourSystem = !val;
+		}
+		function changeColor(val){
+			color = val;
+		}
+
+
+
+		function draw(){
+			ctx.clearRect(0,0,720,720);
+
+			var time = new Date(Date.now());
+			var hour =   time.getHours();
+			var minute = time.getMinutes();
+			var second = time.getSeconds();
+			
+			if(on12hourSystem) hour = hour%12;
+
+			ctx.shadowBlur = 20;
+			ctx.shadowColor = color;
+			ctx.font = "20px sans-serif";
+			ctx.fillStyle = color;
+			ctx.strokeStyle = color;
+			ctx.beginPath();
+			ctx.arc(canvasCenter,canvasCenter,300,0,Math.PI*2);
+			ctx.stroke();
+
+
+			for(var i = 0 ; i < 9;i++){
+				var a = canvasCenter+Math.cos(second*sixtiethAngular+hourNormalize)*(30+i*30);
+				var o = canvasCenter+Math.sin(second*sixtiethAngular+hourNormalize)*(30+i*30);
+				ctx.fillText(second, a, o);
+			}
+			for(var i = 0 ; i < 8;i++){
+				var a = canvasCenter+Math.cos(minute*sixtiethAngular+hourNormalize)*(30+i*30);
+				var o = canvasCenter+Math.sin(minute*sixtiethAngular+hourNormalize)*(30+i*30);
+				ctx.fillText(minute, a, o);
+			}
+			for(var i = 0 ; i < 7;i++){
+				var a = canvasCenter+Math.cos(hour*twelfthAngular+hourNormalize)*(30+i*30);
+				var o = canvasCenter+Math.sin(hour*twelfthAngular+hourNormalize)*(30+i*30);
+				ctx.fillText(hour, a, o);
+			}
+
+
+
+			requestAnimationFrame(draw);
+		}
+		draw();
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>
