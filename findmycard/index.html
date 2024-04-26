@@ -49,10 +49,22 @@
 		.game{
 			overflow: hidden;
 			display: flex;
-			flex-direction: column;
 			justify-content: center;
 		}
 
+		.gamecontent{
+			width: 780px;
+		}
+
+		@media (max-width: 780px) {
+			.gamecontent{
+				width: 550px !important;
+			}
+			.grid{
+				grid-template-columns: repeat(4, 1fr) !important;
+			}
+		}
+		
 		.dropWindow{
 			padding: 30px;
 			border-radius: 14px;
@@ -188,16 +200,20 @@
 				</div>
 				<input type="file" class="configfileuploader d-none" onchange="fileHandler(this)" multiple="false">
 			</div>
+			<!-- <div style="width: 100%;text-align:center;margin:30px 0;font-size: large;">- or -</div>
+			<div><input style="width: 100%;" placeholder="Enter an URL"/></div> -->
 		</div>
 	</div>
 	<div class="game d-none">
-		<div class="grid"></div>
-		<div style="width: 100%; height: 20px;"></div>
-		<div class="myCard">
-			<div class="card reverse" onclick="drawACard()">
+		<div class="gamecontent">
+			<div class="grid"></div>
+			<div style="width: 100%; height: 20px;"></div>
+			<div class="myCard">
+				<div class="card reverse" onclick="drawACard()">
+				</div>
+				<div class="cardarea"></div>
+				<div style="width: 142px;"></div>
 			</div>
-			<div class="cardarea"></div>
-			<div style="width: 142px;"></div>
 		</div>
 	</div>
 
