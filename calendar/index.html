@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>FFXIV RAIDS Calendar</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<style>
+		body{
+			padding: 0;margin: 0;
+			background-color: #333;
+			color: #FFF;
+			font-family: sans-serif;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+			position: fixed;
+		}
+
+		table{
+			border-collapse: collapse;
+		}
+
+		td, th{
+			border: 1px solid rgba(255,255,255,0.2);
+			width: 100px;
+			padding:5px 3px ;
+		}
+
+		th{
+			background-color: #111;
+		}
+
+		.useravailability{
+			width: 100%;
+			display: flex;
+			justify-content: space-evenly;
+			opacity: 0;
+			transition: 0.2s;
+		}
+
+		.useravailability:hover{
+			opacity: 1;
+		}
+
+		.useravailability i{
+			cursor: pointer;
+		}
+
+
+		.yes{	background-color: rgb(100, 160, 100);	}
+		.maybe{	background-color: rgb(211, 187, 106);	}
+		tr:nth-child(even){	background-color: #222; }
+		tr:nth-child(even) .yes{	background-color: rgb(78, 122, 78);	}
+		tr:nth-child(even) .maybe{	background-color: rgb(170, 150, 83);	}
+
+		.button{
+			margin: 0 10px;
+			padding: 10px;
+			border-radius:5px;
+		}
+		.button:hover{
+			background-color: #555;
+			cursor: pointer;
+		}
+
+		.notif{
+			position: fixed;
+			left: 50%;
+			bottom: 50px;
+			transform: translate(-50%);
+			background-color: #FFF;
+			padding: 20px;
+			border-radius: 20px;
+			color:#000;
+			transition:transform 1s;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.notif.hide{
+			transform: translate(-50%,100vh);
+		}
+
+		input{
+			outline: none;
+			border: none;
+			color: #FFF;
+			border-bottom: 2px solid #FFF;
+			background-color: transparent;
+		}
+
+		.d-none{
+			display: none !important;
+		}
+		.loader{
+			background-color: rgba(0,0,0,0.5);
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		@keyframes  spin{
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+		.spinner{
+			animation: 1s spin linear infinite ;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<div style="display: flex;flex-direction: row;margin-bottom: 10px;">
+			<div class="button" onclick="fillAll('yes')"><i class="bi bi-check-circle-fill"></i> Yes all</div>
+			<div class="button" onclick="fillAll('maybe')"><i class="bi bi-question-circle-fill"></i> Maybe all</div>
+			<div class="button" onclick="fillAll('')"><i class="bi bi-x-circle-fill"></i> No all</div>
+			<div style="display: flex; align-items:center"><input class="name" value="" placeholder="name"/></div>
+			<div class="button" onclick="save()"><i class="bi bi-floppy"></i> Save</div>
+			<div class="button" onclick="load()">Load</div>
+			<div class="button" onclick="seeAllAvailability()"><i class="bi bi-clock"></i> see all Availability</div>
+		</div>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th>Monday</th>
+						<th>Tuesdsay</th>
+						<th>Wednesdsay</th>
+						<th>Thursday</th>
+						<th>Friday</th>
+						<th>Saturday</th>
+						<th>Sunday</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="notif hide"></div>
+	<div class="loader d-none"><div class="spinner"><i class="bi bi-arrow-clockwise" style="font-size:100px;"></i></div></div>
+	
+	<script>
+		var key = new URLSearchParams(window.location.search).get("key");
+
+		var table = document.querySelector("tbody");
+		for(var i = 0; i < 24;i++){
+			table.innerHTML+=`<tr>
+				<th>`+(i+"").padStart(2,"0")+`:00</th>
+				<td><div class="useravailability"><i class="bi bi-check-circle-fill"></i><i class="bi bi-question-circle-fill"></i><i class="bi bi-x-circle-fill"></i></div></td>
+				<td><div class="useravailability"><i class="bi bi-check-circle-fill"></i><i class="bi bi-question-circle-fill"></i><i class="bi bi-x-circle-fill"></i></div></td>
+				<td><div class="useravailability"><i class="bi bi-check-circle-fill"></i><i class="bi bi-question-circle-fill"></i><i class="bi bi-x-circle-fill"></i></div></td>
+				<td><div class="useravailability"><i class="bi bi-check-circle-fill"></i><i class="bi bi-question-circle-fill"></i><i class="bi bi-x-circle-fill"></i></div></td>
+				<td><div class="useravailability"><i class="bi bi-check-circle-fill"></i><i class="bi bi-question-circle-fill"></i><i class="bi bi-x-circle-fill"></i></div></td>
+				<td><div class="useravailability"><i class="bi bi-check-circle-fill"></i><i class="bi bi-question-circle-fill"></i><i class="bi bi-x-circle-fill"></i></div></td>
+				<td><div class="useravailability"><i class="bi bi-check-circle-fill"></i><i class="bi bi-question-circle-fill"></i><i class="bi bi-x-circle-fill"></i></div></td>
+			</tr>`;
+		}
+
+		document.querySelectorAll("table i").forEach((el)=>{
+			el.addEventListener("click",(e)=>{
+				if(e.target.classList.contains("bi-check-circle-fill")){
+					e.target.closest("td").classList.add("yes");
+					e.target.closest("td").classList.remove("maybe");
+				}else if(e.target.classList.contains("bi-question-circle-fill")){
+					e.target.closest("td").classList.add("maybe");
+					e.target.closest("td").classList.remove("yes");
+				}else if(e.target.classList.contains("bi-x-circle-fill")){
+					e.target.closest("td").classList.remove("maybe");
+					e.target.closest("td").classList.remove("yes");
+				}
+			});
+		});
+
+		function fillAll(value){
+			document.querySelectorAll("td").forEach((e)=>{
+				e.classList.remove("yes");
+				e.classList.remove("maybe");
+				if(value != ''){
+					e.classList.add(value);
+				}
+			});
+		}
+
+		function base64ToBytes(base64) {
+			const binString = atob(base64);
+			return Uint8Array.from(binString, (m) => m.codePointAt(0));
+		}
+
+		function bytesToBase64(bytes) {
+			const binString = Array.from(bytes, (byte) =>
+				String.fromCodePoint(byte),
+			).join("");
+			return btoa(binString);
+		}
+
+		function load(){
+			document.querySelector(".loader").classList.remove("d-none");
+			fetch("https://getpantry.cloud/apiv1/pantry/"+key+"/basket/RaidsPartyCalendar").then(res=> res.json()).then((data)=>{
+				var d = data[document.querySelector(".name").value];
+				yes = base64ToBytes(d.yb64);
+				may = base64ToBytes(d.mb64);
+				console.log(yes);
+				console.log(may);
+				document.querySelectorAll("tbody tr").forEach((row,i)=>{
+					var yesB = yes[i].toString(2).padStart(8,"0");
+					var mayB = may[i].toString(2).padStart(8,"0");
+					console.log(yesB,mayB);
+					row.querySelectorAll("td").forEach((col,i)=>{
+						if(yesB.charAt(i+1) == "1") col.classList.add("yes");
+						if(mayB.charAt(i+1) == "1") col.classList.add("maybe");
+					});
+				});
+				document.querySelector(".loader").classList.add("d-none");
+			});
+		}
+
+		function showNotif(text){
+			document.querySelector(".notif").innerHTML = text;
+				document.querySelector(".notif").classList.remove("hide");
+				setTimeout(()=>{
+					document.querySelector(".notif").classList.add("hide");
+				},3000)
+		}
+
+		function save(){
+			document.querySelector(".loader").classList.remove("d-none");
+			if(document.querySelector(".name").value == ""){ 
+				showNotif("<i class='bi bi-x'></i> please put a name");
+				return;
+			}
+
+			var yes = new Uint8Array(24);
+			var may = new Uint8Array(24);
+			document.querySelectorAll("tbody tr").forEach((row,i)=>{
+				var yesRow = "0";
+				var maybeRow = "0";
+				row.querySelectorAll("td").forEach((col)=>{
+					maybeRow+=(col.classList.contains("maybe")?"1":"0");
+					yesRow+=(col.classList.contains("yes")?"1":"0");
+				});
+				var intYes = parseInt(yesRow,2);
+				var intMay = parseInt(maybeRow,2);
+				yes[i] = intYes;
+				may[i] = intMay;
+			});
+			var yb64 = bytesToBase64(yes);
+			var mb64 = bytesToBase64(may);
+			
+			var saveData = {};
+			saveData[document.querySelector(".name").value] = {yb64:yb64,mb64:mb64};
+
+			fetch("https://getpantry.cloud/apiv1/pantry/"+key+"/basket/RaidsPartyCalendar",{
+				method:"PUT", 
+				headers: {'Content-Type': 'application/json'},
+				body:JSON.stringify(saveData)
+			}).then(res=> res.text()).then((is)=>{
+				showNotif("<i class='bi bi-check'></i> saved");
+				document.querySelector(".loader").classList.add("d-none");
+			});
+		}
+
+		function seeAllAvailability(){
+			document.querySelector(".loader").classList.remove("d-none");
+			fetch("https://getpantry.cloud/apiv1/pantry/"+key+"/basket/RaidsPartyCalendar").then(res=> res.json()).then((data)=>{
+				var yes = new Uint8Array(24);
+				var may = new Uint8Array(24);
+				for(var i = 0; i < 24;i++){ may[i] = yes[i] = 255; }
+
+				for(const [key,value] of Object.entries(data)){
+					var cyes = base64ToBytes(value.yb64);
+					var cmay = base64ToBytes(value.mb64);
+					for(var i = 0 ; i < 24;i++){
+						yes[i] = yes[i] & cyes[i];
+						may[i] = may[i] & cmay[i];
+					}
+				}
+				console.log(yes);
+				console.log(may);
+
+				
+				document.querySelectorAll("tbody tr").forEach((row,i)=>{
+					var yesB = yes[i].toString(2).padStart(8,"0");
+					var mayB = may[i].toString(2).padStart(8,"0");
+					console.log(yesB,mayB);
+					row.querySelectorAll("td").forEach((col,i)=>{
+						if(yesB.charAt(i+1) == "1") col.classList.add("yes");
+						if(mayB.charAt(i+1) == "1") col.classList.add("maybe");
+					});
+				});
+				document.querySelector(".loader").classList.add("d-none");
+			});
+		}
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>
