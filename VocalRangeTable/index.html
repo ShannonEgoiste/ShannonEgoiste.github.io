@@ -354,7 +354,7 @@
 				session = session.concat(fromshare);
 			}
 			console.log(session);
-			history.pushState({}, "", "/");
+			history.pushState({}, "", "/VocalRangeTable/");
 			
 			session.forEach((e,i)=>{
 				if(i == 0){
@@ -402,7 +402,7 @@
 			console.log(lzb64);
 			
 			modal.classList.remove("d-none");
-			var url = window.location.href+"?data="+lzb64;
+			var url = window.location.href+"/VocalRangeTable/?data="+lzb64;
 			modal.querySelector(".modalheader").innerHTML = "share";
 			modal.querySelector(".modalbody").innerHTML = `
 			<div style="display: flex;flex-direction: row;align-items: center;">
