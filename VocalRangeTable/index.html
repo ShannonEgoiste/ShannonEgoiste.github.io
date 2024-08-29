@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Vocal Range Table</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/lzutf8/build/production/lzutf8.min.js"></script>
 
 	<style>
 		body{
@@ -113,6 +114,15 @@
 			border: 1px solid rgba(0,0,0,0.7);
 			box-shadow: inset 2px 2px rgba(255,255,255,0.5),inset -2px -2px rgb(0, 0, 0, 0.5);
 		}
+		.btn{
+			transition: 0.5s;
+			cursor: pointer;
+			user-select: none;
+		}
+		.btn:hover{
+			color: #999;
+		}
+
 
 	</style>
 </head>
@@ -122,7 +132,10 @@
 			<table>
 				<thead>
 					<tr class="pianohead">
-						<td style="background-color: #333;border: none;">
+						<td style="background-color: #333;border: none;color: #FFF;">
+							<div style="display:flex;flex-direction:row">
+								<a class="btn" style="margin-left:20px" onclick="sharewindow()"><i class="bi bi-share"></i> Share</a>
+							</div>
 						</td>
 					</tr>
 				</thead>
@@ -137,20 +150,77 @@
 								<input type="text" class="name" placeholder="Name" oninput="showRangeLine(this)"/>
 								<input type="text" class="range" placeholder="Range (eg. C4-F5)" oninput="showRangeLine(this)"/>
 								<input type="color" class="color" value="#44FF99" oninput="showRangeLine(this)">
-								<i class="bi bi-x-lg" style="margin-left: 10px;cursor:pointer"  onclick="removeline(this)"></i>
+								<div onclick="removeline(this)" class="btn" style="margin-left: 10px;cursor:pointer;">
+									<i class="bi bi-x-circle"></i>
+								</div>
 							</div>
 						</td>
 					</tr>
 					<tr class="rangeline-pilot">
-						<td style="vertical-align:top;text-align: center;padding: 10px;font-size: 30px;color:#999">
-							<i class="bi bi-plus-circle" style="cursor:pointer" onclick="addline()"></i>
+						<td style="vertical-align:top;text-align: center;padding: 10px;font-size: 30px;">
+							<div class="btn" onclick="addline()">
+								<i class="bi bi-plus-circle" ></i>
+							</div>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
+	<style>
+		.d-none{
+			display: none !important;
+		}
+
+		.modalcontainer{
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.5);
+			display: flex;
+			justify-content: center;
+		}
+
+		.modalwindow{
+			margin-top: 15vh;
+			padding: 20px;
+			height: fit-content;
+			background-color: #FFF;
+		}
+		.modalheader{
+			width: 100%;
+			border-bottom: 1px solid;
+			margin-bottom: 10px;
+		}
+
+		.sharebtn{
+			display: flex;align-items: center;justify-content: center;
+			width:30px;height:30px;
+			border-radius: 100%;
+			background-color: #333;
+			color: #FFF;
+			font-size: 20px;
+			cursor: pointer;
+			user-select: none;
+		}
+	</style>
+	<div class="modalcontainer d-none">
+		<div class="modalwindow">
+			<div class="modalheader">Share</div>
+			<div class="modalbody">
+			</div>
+		</div>
+	</div>
+
+
 	<script>
+		var modal = document.querySelector(".modalcontainer");
+		modal.addEventListener("click",(e)=>{
+			if(e.target.classList.contains("modalcontainer") && !e.target.classList.contains("btnquit")){
+				modal.classList.add("d-none");
+			}
+		});
+
 		function hslToHex(h, s, l) {
 			const a = s * Math.min(l, 1 - l) / 100;
 			const f = n => {
@@ -239,10 +309,53 @@
 			rangelinepilot.innerHTML+="<td class='key'></td>";
 		}		
 		
-		loadAllRange();
+		loadFromUrl();
 
-		function loadAllRange(){
+		function getUrlData(){
+			var url = new URL(window.location.href);
+			var param = new URLSearchParams(url.search);
+			var fromshare = [];
+			if(param.get("data")){
+				fromshare = JSON.parse(LZUTF8.decompress(param.get("data"),{inputEncoding:"Base64"}));
+			}
+			return fromshare;
+		}
+
+		function loadFromUrl(){
+			var fromshare = getUrlData();
 			var session = JSON.parse(localStorage.getItem("session"));
+
+			if(session.length > 0 && fromshare.length > 0){
+				modal.classList.remove("d-none");
+				modal.classList.add("btnquit");
+				modal.querySelector(".modalheader").innerHTML = "you already have entries, what do you want to do ?";
+				modal.querySelector(".modalbody").innerHTML = `
+					<div style="display:flex;flex-direction:column">
+						<div class="btn" style="margin:20px" onclick='loadAllRange(1)'><i style="margin-right:20px" class="bi bi-book"></i><a>Read only</a></div>
+						<div class="btn" style="margin:20px" onclick='loadAllRange(2)'><i style="margin-right:20px" class="bi bi-plus-square"></i><a>Add to my current entries</a></div>
+						<div class="btn" style="margin:20px" onclick='loadAllRange()'><i style="margin-right:20px" class="bi bi-x-circle"></i><a>Cancel</a></div>
+					</div>`;
+			}else{
+				loadAllRange();
+			}
+		}
+		
+		function loadAllRange(loadMethod = 0){
+			modal.classList.remove("btnquit");
+			modal.classList.add("d-none");
+
+			var fromshare = getUrlData();
+			var session = JSON.parse(localStorage.getItem("session"));
+			if(loadMethod==1){
+				saveAllRange = ()=>{};
+				document.querySelectorAll("input").forEach((el)=>{el.disabled});
+				session = fromshare;
+			}else if(loadMethod==2){
+				session = session.concat(fromshare);
+			}
+			console.log(session);
+			history.pushState({}, "", "/");
+			
 			session.forEach((e,i)=>{
 				if(i == 0){
 					rangeline.querySelector(".name").value = e.name;
@@ -255,6 +368,10 @@
 			document.querySelectorAll(".name").forEach((el)=>{
 				showRangeLine(el,false);
 			});
+			if(loadMethod==1){
+				removeline = addline = ()=>{};
+			}
+
 		}
 
 		function move(up,d){
@@ -276,6 +393,24 @@
 				showRangeLine(source);
 				showRangeLine(sibling);
 			}
+		}
+
+		function sharewindow(){
+			saveAllRange();
+			var session = localStorage.getItem("session");
+			var lzb64 = LZUTF8.compress(session,{outputEncoding:"Base64"});
+			console.log(lzb64);
+			
+			modal.classList.remove("d-none");
+			var url = window.location.href+"?data="+lzb64;
+			modal.querySelector(".modalheader").innerHTML = "share";
+			modal.querySelector(".modalbody").innerHTML = `
+			<div style="display: flex;flex-direction: row;align-items: center;">
+				<input type="text" style="font-size: 30px;" value="`+url+`"/>
+				<div class="sharebtn">
+					<i class="bi bi-clipboard"></i>
+				</div>
+			</div>`;
 		}
 
 	</script>
