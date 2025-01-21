@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ShaPokedex</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+	<style>
+		*{
+			scrollbar-color: #555 #222;
+			scrollbar-width: thin;
+		}
+
+		body{
+			background-color: #222;
+			position: fixed;
+			padding: 0;margin: 0;
+			width: 100%;height: 100%;
+			color: #FFF;
+			font-family: 'Poppins', sans-serif;
+			display: flex;
+		}
+		.d-none{
+			display: none !important;
+		}
+
+	</style>
+</head>
+<body>
+	<style>
+		.filler{
+			min-width: 0;
+			transition: 1s;
+		}
+		.filler.show{
+			min-width: 300px;
+		}
+
+		.filter{
+			position:fixed;
+			background-color: rgba(0,0,0,0.7);
+			backdrop-filter: blur(100px);
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			z-index: 100;
+			transition: 1s;
+			min-width: 300px;
+			width: auto;
+			transform: translateX(-100%);
+			transition: 1s;
+		}
+		.filler.show .filter{
+			transform: translateX(0);
+		}
+
+
+		.iconItem{
+			filter: brightness(0.4);
+			cursor:pointer;
+			height: 32px;
+			user-select: none;
+		}
+		.iconItem:has(input:checked){
+			filter: brightness(1);
+		}
+		.switchbtn::after{
+			content:"non";	
+		}
+		.iconItem.switchbtn:has(input:checked)::after{
+			content: "oui";
+		}
+
+		.iconItem input{
+			display:none;
+		}
+		.iconItem img{
+			height: 32px;
+		}
+		.filterhead{
+			width: 100%;
+			border-bottom: 1px solid #555;
+			text-align: center;
+			padding: 10px;
+			box-sizing: border-box;
+			position: relative;
+		}
+
+		.toggleFilter{
+			position: absolute;
+			width: 24px;
+			height: 24px;
+			right: -44px;
+			top: 0;
+			padding: 10px;
+			cursor: pointer;
+			transition: 0.5s;
+		}
+		.show .toggleFilter{
+			transform: rotate(-180deg);
+		}
+
+		.filterList{
+			display: flex;
+			flex-direction: column;
+			overflow-y:scroll;
+			flex-grow: 2;
+		}
+		.listOeuf .iconItem img{
+			height: 16px;
+		}
+		.filterform{
+			display: flex;
+			width: 100%;
+			justify-content: center;
+		}
+		.listOeuf, .listGen{
+			min-width: 80%;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+		}
+		.listType{
+			display: grid;
+			width: calc(32px * 6);
+			grid-template-columns: repeat(6, 1fr);
+		}
+		.filtertitle{
+			padding: 10px;
+			margin-bottom: 10px;
+			border-bottom: 1px solid #555;
+		}
+		.filtertitle .action{
+			float: right;
+		}
+		.filtertitle .action .iconItem{
+			padding-left: 5px;
+		}
+		
+		.pokeball{
+			display: inline-block;
+			height: 48px; width: 48px;
+			background: linear-gradient(0deg, rgb(255, 255, 255) 45%, #000 45% 55%, rgb(172, 0, 57) 55%);
+			border-radius: 100%;
+			position:relative;
+			transition: 0.5s;
+		}
+		.pokeball::after{
+			display: block;
+			position: absolute;
+			content: "\00a0";
+			height: 8px; width: 8px;
+			border-radius: 100%;
+			background-color: #FFF;
+			border: 4px solid #000;
+			left: 16px;top: 16px;
+		}
+
+		.btnarea{
+			position: absolute;
+			right:calc(-100% - 3vw);
+			top:calc(50vh - 23px);
+		}
+		.genPokemonBtn{
+			outline: none;
+			margin: 0;padding:0;
+			border: none;
+			display: flex;
+			flex-direction: row;
+			background-color: #222;
+			color: #FFF;
+			font-weight: bolder;
+			border-radius: 48px;
+			cursor: pointer;
+			transition: background-color 0.5s;
+			width: 100%;
+			margin-bottom: 20px;
+			z-index: 20;
+		}
+		.genPokemonBtn span{
+			padding: 0 20px;
+			display:block;
+			height: 48px;
+			line-height: 48px;
+		}
+
+		.genPokemonBtn:hover{
+			background-color: #333;
+		}
+
+		.genPokemonBtn:hover .pokeball{
+			transform: rotate(360deg);
+		}
+
+		.btnarea:hover .rerollbtn{
+			margin-top:-18px;
+			margin-left:50px;
+			opacity: 1;
+		}
+
+		.rerollbtn{
+			margin-top:-68px;
+			margin-left:0px;
+			transition: 0.5s;
+			opacity: 0;
+		}
+
+
+	</style>
+	<div class="filler">
+		<div class="filter">
+			<div class="filterhead">
+				<div class="btnarea">			
+					<button class="genPokemonBtn" onclick="generatePokemon(true)">
+						<div class="pokeball"></div>
+						<span>Obtenir un autre Pokemon</span>
+					</button>
+					<button class="genPokemonBtn rerollbtn" onclick="generatePokemon()">
+						<span>Reroll ce Pokemon</span>
+					</button>
+				</div>
+				
+				<span>Filtre</span>
+				<div class="toggleFilter" onclick="document.querySelector('.filler').classList.toggle('show');">
+					<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="9 18 15 12 9 6"></polyline></svg>
+				</div>
+
+			</div>
+			<div class="filterList">
+				<div class="filtertitle">
+					<span>Types</span>
+					<div class="action"><label class="iconItem"><input name='typeaction' type="radio" value='^'/>^</label><label class="iconItem"><input checked  name='typeaction' type="radio" value='&'/>&</label></div>
+				</div>
+				<div class="filterform"><div class="listType"></div></div>
+				<div class="filtertitle">
+					<span>Groupe Oeuf</span>
+					<div class="action"><label class="iconItem"><input name='eggaction' type="radio" value='^'/>^</label><label class="iconItem"><input checked  name='eggaction' type="radio" value='&'/>&</label></div>
+				</div>
+				<div class="filterform"><div class="listOeuf"></div></div>
+				<div class="filtertitle"><span>Generation d'origine</span></div>
+				<div class="filterform"><div class="listGen"></div></div>
+				<div class="filtertitle">
+					<span>Toujours Shiny</span>
+					<div class="action"><label class="iconItem switchbtn"><input name='alwaysShiny' type="checkbox"/></label></div>
+				</div>
+
+				<div style="height: 50px;">&nbsp;</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="pokemon.js"></script>
+	<script src="datasup.js"></script>
+	<script src="types.js"></script>
+	<script>
+		//Remplisage des listes de filtres
+		LISTE_TYPES.forEach((t)=>{
+			document.querySelector(".listType").innerHTML+=`<label class="iconItem"><input type="checkbox" value="`+t.name.fr+`"/><img src="`+t.sprites+`"></img></label>`;
+		});
+		LISTE_GROUPE_OEUF.forEach((e)=>{
+			document.querySelector(".listOeuf").innerHTML+="<label class='iconItem'><input type='checkbox' value='"+e.nom+"'/><img src='"+e.sprites+"'></img><span>"+e.nom+"</span></label>";
+		});
+		for(var i = 1; i <= 9;i++){
+			document.querySelector(".listGen").innerHTML+="<label class='iconItem'><input type='checkbox' checked name='gen' value='"+i+"'/><span>Gen "+i+"</span></label>";
+		}
+	</script>
+
+
+	<style>
+		.pokemonArea{
+			display: flex;
+			flex-direction: column;
+			flex-grow: 2;
+		}
+		.decoside{
+			position: relative;
+			height: 50%;
+		}	
+
+
+		@keyframes pokeSlide{
+			from {transform: translateX(-100vw) rotate(0);}
+			to {transform: translateX(0) rotate(720deg);}
+		}
+		.pokedeco{
+			position: absolute;
+			left: 50%;
+			bottom: -20%;
+			animation: pokeSlide 0.5s ease;
+		}
+		.pokedeco svg{
+			height: 50vh;
+		}
+
+		@keyframes zoomin {
+			from { scale: 0; }
+			80% { scale: 1.4; }
+			to   { scale: 1; }
+		}
+
+		.sprite{
+			height: 40vh;
+			position: absolute;
+			left: 50%;
+			bottom: -40px;
+			transform: translateX(-50%);
+			z-index: 20;
+			scale: 0;
+		}
+		.sprite-anime{
+			scale: 1;
+			animation: zoomin 0.5s ease-out;
+		}
+
+		.types{
+			display: flex;
+			flex-direction: row;
+			margin-top: 20px;
+		}
+
+		@keyframes slidein {
+			from { transform: scale(10) translateX(-50vw); }
+			to   { transform: scale(1) translateX(0); }
+		}
+		.type{
+			position: relative;
+			display: flex;
+			flex-direction: row;
+			margin-right: 20px;
+			border-radius: 10px;
+			background-color: rgba(0,0,0,0.3);
+			backdrop-filter: blur(5px);
+			box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+			animation: slidein 0.4s ease-in;
+			z-index: 30;
+		}
+		.type img{width: 48px;}
+		.type span{
+			padding-left:20px;
+			width: 100px;
+			display: block;
+			line-height: 48px;
+		}
+
+		.identity{
+			position: absolute;
+			left: 5vw;
+		}
+		.name{
+			font-size: 60px;
+			font-weight: bolder;
+			color: #FFF;
+		}
+
+		.idnumber{
+			font-size: 30px;
+			font-weight: bold;
+			color: rgba(255,255,255,0.5);
+		}
+		@keyframes appear {
+			from { transform: translateY(100%); }
+			to   { transform: translateY(0); }
+		}
+		.information{
+			box-sizing: border-box;
+			padding-top: 50px;
+			flex-grow: 2;
+			width: 100%;
+			max-height: 50vh;
+			min-height: 50vh;
+			background-color: rgba(0,0,0,0.3);
+			backdrop-filter: blur(20px);
+			border-radius: 48px 48px 0 0;
+			z-index: 10;
+			display: flex;
+			flex-direction: column;
+			animation: appear 0.2s ease;
+		}
+
+		nav{
+			border-bottom: 1px solid rgba(255,255,255,0.2);
+		}
+		.tab{
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+		}
+		.tabItem{
+			cursor: pointer;
+			margin: 0 20px;
+			border-bottom: 2px solid transparent;
+		}
+		.tabItem.active{
+			border-bottom: 2px solid #FFF;
+		}		
+		
+		.separator{
+			border-left: 1px solid rgba( 255, 255, 255, 0.2);
+			margin: 0 20px;
+		}
+		.tabledata{
+			display: flex;
+			flex-direction: row;
+			padding: 20px;
+			margin-bottom: 50px;
+		}
+		.page{
+			max-height: 100%;
+			overflow-y: scroll;
+			width: 100%;
+			flex-grow: 2;
+			display: flex;
+			justify-content: center;
+			box-sizing: border-box;
+		}
+
+		table{
+			--margin: 0 20px;
+			height: fit-content;
+			width: 100%;
+		}
+		tr td{
+			width: 350px;
+		}
+		tr th{
+			text-align: center;
+			color: rgba( 255, 255, 255, 1) !important;
+			font-weight: bold;
+		}
+		tr td:nth-child(1){
+			color: rgba( 255, 255, 255, 0.7);
+		}
+
+		i.f::after{	
+			content: "♀";
+			color: rgb(255, 164, 189);
+			font-weight: 700;
+		}
+		i.m::after{
+			content: "♂";
+			color: rgb(137, 210, 255);
+			font-weight: 700;
+		}
+		.talentcache{
+			color: rgba( 255, 255, 255, 0.5);
+		}
+		.specimenSize{
+			color: rgba( 255, 255, 255, 0.5);
+			font-size: smaller;	
+		}
+		.ball{
+			display: flex;
+			align-items: center;
+		}
+		.ball img{
+			height: 24px;
+			margin-left: 10px;
+		}
+
+	</style>
+	<style>
+		@media only screen and (max-width: 900px) {
+			.separator{border-bottom: 1px solid rgba( 255, 255, 255, 0.2);margin:20px 0;}
+			.tabledata{flex-direction: column;height: 105%;}
+			.identity{left: 10vw;}
+			.name{font-size: 40px;}		
+			.idnumber{font-size: 20px;}		
+			.sprite{height: 30vh;}
+			.pokedeco{left: 50%;}
+			.pokedeco svg{height: 40vh;}
+			.type img{width: 32px;}
+			.type span{line-height: 32px;}
+			.genPokemonBtn{
+				position: relative;
+				right: 0;
+				top: 0;
+
+			}
+
+		}
+	</style>
+
+
+	<div class="pokemonArea d-none">
+		<div class="decoside">
+			<div class="identity">
+				<div>
+					<span class="name"></span>
+					<span class="isshiny d-none">
+						<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 128 128" fill="#ff3360">
+							<path d="M96 0 104 24 128 32 104 40 96 64 88 40 64 32 88 24Z"/>
+							<path d="M48 32 60 68 96 80 60 92 48 128 36 92 0 80 36 68Z"/>
+						</svg>
+					</span>
+					<span class="idnumber"></span>
+				</div>
+				<div class="types"></div>
+			</div>
+			<img class="sprite"/>
+			<div class="pokedeco">
+				<svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.2)" xmlns="http://www.w3.org/2000/svg"><path d="M21.901 13h-5.05a5.002 5.002 0 0 1-9.8 0H2c.502 5.053 4.765 9 9.95 9 5.186 0 9.45-3.947 9.951-9m0-2c-.502-5.053-4.765-9-9.95-9A10 10 0 0 0 2 11h5.05a5.002 5.002 0 0 1 9.8 0z"/><path clip-rule="evenodd" d="M11.95 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6m1.5-3a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" fill-rule="evenodd"/></svg>
+			</div>
+		</div>
+		<div class="information">
+			<nav class="tab">
+				<div class="tabItem active">A Propos</div>
+			</nav>
+			<div class="page">
+				<div class="tabledata">
+					<table>
+						<tr><th colspan="2">Base</th></tr>
+						<tr><td>Espèce</td>				<td class="species">Pokémon</td></tr>
+						<tr><td>Répartition Genre</td>	<td class="genderRepart">50% <i class="m"></i> 50% <i class="f"></i></td></tr>
+						<tr><td>Taille de base</td>		<td class="baseheight"></td></tr>
+						<tr><td>Poids de base</td>		<td class="baseweight"></td></tr>
+						<tr><td>Talents</td>			<td class="talents"></td></tr>
+						<tr><td>groupe d'oeuf</td>		<td class="egggroup"></td></tr>
+					</table>
+					<div class="separator"></div>
+					<table>
+						<tr><th colspan="3">Spécifique</th></tr>
+						<tr><td>Info</td>	</td><td class="info"></td>		</tr>
+						<tr><td>Genre</td>	</td><td class="gender"></td>	</tr>
+						<tr><td>Taille</td>	</td><td class="height"></td>	</tr>
+						<tr><td>Poids</td>	</td><td class="weight"></td>	</tr>
+						<tr><td>Pokeball</td>	</td><td class="ball"></td>	</tr>
+						<tr><td>Nature</td>	</td><td class="nature"></td>	</tr>
+						<tr><td>Insigne</td></td><td class="insigne"></td>	</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	
+	</div>
+<script>	
+	// Generation des différente info du pokemon
+	function shiny(){return Math.floor(Math.random()*4103) == 0;}
+	function info(){return LISTE_INFO[Math.floor(Math.random()*LISTE_INFO.length)];}
+	function genre(percentMale){return (Math.random()*100>percentMale?"F":"M");}
+	function taille(baseHeight,baseWeight){
+		var t = Math.random()*100-50;
+		var scalar = "";
+		var borne = {min:0,max:0};
+		if(Math.abs(t) < 1){
+			scalar+="XXX";
+			borne = {min:0.8,max:1}
+		}else if(Math.abs(t) < 4){
+			scalar+="XX";
+			borne = {min:0.6,max:0.8};
+		}else if(Math.abs(t) < 15){
+			scalar+="X";
+			borne = {min:0.3,max:0.6};
+		}
+		
+		if(Math.abs(t) > 20){
+			scalar+="M";
+			borne = {min:-0.1,max:0.1};
+		}else if(t<0){
+			scalar+="S";
+			var min = borne.min;
+			borne.min = borne.max*-1;
+			borne.max = borne.min*-1;
+		}else{
+			scalar+="L";
+		}
+
+		var mutation = borne.min+Math.random()*(borne.max+Math.abs(borne.min));
+		return {scalar:scalar,height:Math.round((baseHeight+baseHeight*mutation*0.2)*10)/10,weight:Math.round((baseWeight+baseWeight*mutation*(t < 0?0.36:0.44))*10)/10};
+	}
+	function nature(){ return LISTE_NATURE[Math.floor(Math.random()*LISTE_NATURE.length)];}
+	function insigne(){ return LISTE_INSIGNE[Math.floor(Math.random()*LISTE_INSIGNE.length)];}
+	function getRandomBall(){
+		var random = Math.random()*100;
+		var sum = 0;
+		for(var j = 0;j<ball.length;j++){
+			if(random < sum+ball[j].proba) return ball[j];
+			else sum+=ball[j].proba;
+		}
+	}
+
+	// Generation d'un pokemon en fonction des filters
+	function getPokemon(filters){	
+		var prepokemon = LISTE_POKEMON.filter((pokemon,i)=>{		
+			if(i==0) return false;
+			if(filters.type.operator == "&"){
+				if(!filters.type.data.every((type)=>pokemon.types.map((el)=>el.name).includes(type))) return false;
+			}else{
+				if(!filters.type.data.some((type)=>pokemon.types.map((el)=>el.name).includes(type))) return false;
+			}
+			
+			if(filters.egg.operator == "&"){
+				if(!filters.egg.data.every((egg)=>pokemon.egg_groups?.includes(egg))) return false;
+			}else{
+				if(!filters.egg.data.some((egg)=>pokemon.egg_groups.includes(egg))) return false;
+			}
+
+			if(!filters.gen.data.some((gen)=>pokemon.generation == gen)) return false;
+			return true;
+		});
+
+		if(prepokemon.length == 0){
+			return LISTE_POKEMON[0];
+		}
+		return prepokemon[Math.floor(Math.random()*(prepokemon.length))];
+	}
+	function getPokemonFromId(id){
+		return LISTE_POKEMON.filter((el)=>{
+			return el.pokedex_id == id;
+		})[0];
+	}
+	function resetAnimation(dom){dom.style.animation ="none";dom.offsetHeight;dom.style.animation = null;}
+
+	function getFilter(){
+		var type = Array.from(document.querySelectorAll(".listType input[type='checkbox']:checked")).map((el)=>el.value);
+		var typeop = document.querySelector("input[name='typeaction']:checked").value;
+		var egg = Array.from(document.querySelectorAll(".listOeuf input[type='checkbox']:checked")).map((el)=>el.value);
+		var eggop = document.querySelector("input[name='eggaction']:checked").value;
+		var generation = Array.from(document.querySelectorAll(".listGen input[type='checkbox']:checked")).map((el)=>el.value);
+		return {type:{data:type,operator:typeop},egg:{data:egg,operator:eggop},gen:{data:generation,operator:"^"}};
+	}
+
+	function generatePokemon(force = false){
+		var pokemon = null;
+		var url = new URL(window.location.href);
+		var getid = url.searchParams.get("pokedexID");
+		if(getid && !force){
+			pokemon = getPokemonFromId(getid);
+		}else{
+			pokemon = getPokemon(getFilter());
+			url.searchParams.set("pokedexID",pokemon.pokedex_id);
+			window.history.pushState(null,'',url);
+		}
+
+		console.log(pokemon);
+		var sprite = document.querySelector(".sprite");
+		var isShiny = shiny() | document.querySelector("[name='alwaysShiny']").checked;
+		if(!isShiny){
+			sprite.src = pokemon.sprites.regular;
+			document.querySelector(".isshiny").classList.add("d-none");
+		}else{
+			sprite.src = pokemon.sprites.shiny;
+			document.querySelector(".isshiny").classList.remove("d-none");
+		}
+		
+		sprite.classList.remove("sprite-anime");
+		sprite.onload=()=>{
+			document.querySelector(".pokemonArea").classList.remove("d-none");
+			sprite.classList.add("sprite-anime");
+
+			document.querySelector(".name").innerHTML = pokemon.name.fr;
+			document.querySelector(".idnumber").innerHTML = "#"+pokemon.pokedex_id;
+			
+			if(pokemon.pokedex_id != 0){
+				document.querySelector("body").style.background = LISTE_TYPES_COLORS[pokemon.types[0].name];
+				if(pokemon.types.length == 1){
+					document.querySelector(".pokemonArea").style.background = LISTE_TYPES_COLORS[pokemon.types[0].name];
+				}else{
+					var gradient = "linear-gradient(90deg,"+LISTE_TYPES_COLORS[pokemon.types[0].name]+" 50%, "+LISTE_TYPES_COLORS[pokemon.types[1].name]+" 50%)";
+					document.querySelector(".pokemonArea").style.background = gradient;
+				}
+				document.querySelector(".types").innerHTML="<div class='type'><img src='"+pokemon.types[0].image+"'/><span>"+pokemon.types[0].name+"</span></div>";
+				if(pokemon.types[1]){ 
+					document.querySelector(".types").insertAdjacentHTML("beforeend","<div class='type'><img src='"+pokemon.types[1].image+"'/><span>"+pokemon.types[1].name+"</span></div>");
+				}
+				document.querySelector(".talents").innerHTML = pokemon.talents.map(el => ((el.tc)?("<span class='talentcache'>"+el.name+"</span>"):el.name)).join(", ");
+				var physique = taille(parseFloat(pokemon.height.replace(",",".")),parseFloat(pokemon.weight.replace(",",".")));
+				document.querySelector(".height").innerHTML = physique.height+" m <span class='specimenSize'>("+physique.scalar+")</span>";
+				document.querySelector(".weight").innerHTML = physique.weight+" kg <span class='specimenSize'>("+physique.scalar+")</span>";
+			}else{
+				document.querySelector(".types").innerHTML="";
+				document.querySelector(".pokemonArea").style.background = document.querySelector("body").style.background = "#111";
+				document.querySelector(".height").innerHTML = document.querySelector(".weight").innerHTML = document.querySelector(".talents").innerHTML = "N/C";
+			}
+
+			resetAnimation(document.querySelector(".information"));
+			resetAnimation(document.querySelector(".pokedeco"));
+
+			document.querySelector(".species").innerHTML = pokemon.category;
+			if(pokemon.sexe){
+				document.querySelector(".genderRepart").innerHTML = pokemon.sexe.male+"% <i class='m'></i> "+pokemon.sexe.female+"% <i class='f'></i>";
+			}else{
+				document.querySelector(".genderRepart").innerHTML = "Asexué";
+			}
+			document.querySelector(".baseheight").innerHTML = pokemon.height;
+			document.querySelector(".baseweight").innerHTML = pokemon.weight;
+			if(pokemon.egg_groups){
+				document.querySelector(".egggroup").innerHTML = pokemon.egg_groups.join(", ");
+			}else{
+				document.querySelector(".egggroup").innerHTML = "N/C";
+			}
+
+			document.querySelector(".info").innerHTML = info();
+			if(pokemon.sexe){
+				document.querySelector(".gender").innerHTML = genre(pokemon.sexe.male)=="M"?"<i class='m'></i>":"<i class='f'></i>";
+			}else{
+				document.querySelector(".gender").innerHTML = "Asexué";
+			}
+			document.querySelector(".nature").innerHTML = nature();
+			document.querySelector(".insigne").innerHTML = insigne();
+			var pokeball = getRandomBall();
+			document.querySelector(".ball").innerHTML="<span>"+pokeball.name+"</span><img src='"+pokeball.sprites+"'/>";
+
+		}
+	}
+	generatePokemon();
+
+</script>
+</body>
+</html>
