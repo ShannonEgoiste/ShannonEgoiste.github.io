@@ -98,7 +98,7 @@
 
 	<script src="enigmeannon.js"></script>
 	<script>
-		var reloadsave = localStorage.getItem("checkeditem").split(",");
+		var reloadsave = localStorage.getItem("checkeditem")?.split(",");
 		console.log(reloadsave);
 		var content = document.querySelector(".enigmeList");
 		var mapdiff = ["sprout","casual","hardcore","","ultimate"];
@@ -113,7 +113,7 @@
 				<div style="width:100%;margin-right:10px">`+enigme+`</div>	
 				`+iconExpac+`
 				<img src="img/subject/`+el.subject+`.png" height="24px" class="item-img">
-				<input type="checkbox" value='`+el.point+`' data-n='`+el.n+`' `+(reloadsave.includes(el.n)?"checked":"")+`/>
+				<input type="checkbox" value='`+el.point+`' data-n='`+el.n+`' `+(reloadsave?.includes(el.n)?"checked":"")+`/>
 			</label>`;
 			content.innerHTML+=str;
 		});
