@@ -77,13 +77,13 @@
 </head>
 <body>
 	<div class="header">
-		<div class="legend" style="margin: 0 40px;">
+		<div class="legend" style="margin: 0 40px;padding:20px 0;">
 			<label class="vertcent"><img class='item-img' width="20px" src="img/difficulty/sprout.png"/>1 point		</label>
 			<label class="vertcent"><img class='item-img' width="20px" src="img/difficulty/casual.png"/>2 points	</label>	
 			<label class="vertcent"><img class='item-img' width="20px" src="img/difficulty/hardcore.png"/>3 points	</label>
 			<label class="vertcent"><img class='item-img' width="20px" src="img/difficulty/ultimate.png"/>5 points	</label>
 		</div>
-		<div class="legend" style="flex-grow: 2;">
+		<div class="legend" style="flex-grow: 2;padding:20px 0;">
 			<label class="vertcent"><img class='item-img' width="20px" src="img/subject/Instance.png"/>En instance</label>
 			<label class="vertcent"><img class='item-img' width="20px" src="img/subject/Joueur.png"/>Un joueur	</label>
 			<label class="vertcent"><img class='item-img' width="20px" src="img/subject/Lieu.png"/>Un lieu</label>
@@ -92,12 +92,26 @@
 			<label class="vertcent"><img class='item-img' width="20px" src="img/subject/PNJ.png"/>Un PNJ</label>
 		</div>
 		<div style="padding: 20px;font-size: large;">score : <span class="score">0</span> points</div>
+		<div style="padding: 20px;font-size: large;"><span class="temps">00h00s00</span> restant</div>
 	</div> 
 	<div class="enigmeList">
 	</div>
 
 	<script src="enigme.js"></script>
 	<script>
+		var timeEnd = new Date(Date.UTC(2025,4,5,23,0));
+		
+		setInterval(()=>{
+			var time = new Date(Date.now());
+			var dif = (timeEnd-time)/1000/60/60;
+			var h = Math.floor(dif);
+			var m = Math.floor((dif-h)*60);
+			var s = Math.floor((dif-h-(m/60))*60*60);
+			document.querySelector(".temps").innerHTML = ((h+"").padStart(2,"0")+"h"+(m+"").padStart(2,"0")+"s"+(s+"").padStart(2,"0"));
+		},1000);
+
+
+
 		var reloadsave = localStorage.getItem("checkeditem")?.split(",");
 		var content = document.querySelector(".enigmeList");
 		var mapdiff = ["sprout","casual","hardcore","","ultimate"];
