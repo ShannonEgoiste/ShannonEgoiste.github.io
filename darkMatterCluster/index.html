@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body{
+			margin: 0;padding:0;
+			background-color: #111;
+			color: #FFF;
+			font-family: sans-serif;
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+		}
+		.nodearea{
+			height: 100%;
+			overflow-y: scroll;
+		}
+		.listNode{
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		.node{
+			display: flex;
+			flex-direction: row;
+			border: 1px solid #222;
+			align-items: center;
+			padding: 5px;
+			transition: 1s;
+		}
+		.current{
+			background-color: rgb(67, 87, 78);
+		}
+
+		.isActual{
+			width: 50px;
+		}
+
+		.icon{
+			padding-right: 20px;
+		}
+		.loca{
+			min-width: 200px;
+			padding-right: 20px;
+			width: 100%;
+		}
+		.time{
+			width: 200px;
+			font-weight: bolder;
+		}
+		.time .to{
+			font-weight: lighter;
+			color: #AAA;
+		}
+		.left{
+			width: 200px;
+			overflow: hidden;
+		}
+
+		.timebar{
+			box-sizing: border-box;
+			padding: 5px 10px ;
+			width: 100%;
+			background-color: #000;
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+		}
+		.icontime{
+			margin: 0 10px;
+			background-color: #FFF;
+			color: #000;
+			padding: 2px;
+			border-radius: 5px;
+			font-size: smaller;
+			width: 35px;
+			display: flex;
+			justify-content: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="timebar">
+		<div class="icontime">LT</div>
+		<div class="currentTime"></div>
+		<div class="icontime">ET</div>
+		<div class="eorzeaTime"></div>
+	</div>
+	<div class="nodearea">
+		<ul class="listNode">
+		</ul>
+	</div>
+
+	<script>	
+		var listnode = [
+			{location:"Coerthas Central Highland", type:"M", time:"0100"},
+			{location:"East Shroud", type:"H", time:"0115"},
+			{location:"Mor Dhona", type:"L", time:"0130"},
+			{location:"South Shroud", type:"L", time:"0200"},
+			{location:"The Dravanian Forelands", type:"H", time:"0215"},
+			{location:"Central Shroud", type:"H", time:"0230"},
+			{location:"Northern Thanalan", type:"M", time:"0300"},
+			{location:"North Shroud", type:"L", time:"0330"},
+			{location:"Central Thanalan", type:"M", time:"0400"},
+			{location:"South Thanalan", type:"M", time:"0415"},
+			{location:"Middle la Noscea", type:"L", time:"0430"},
+			{location:"Western Thanalan", type:"Q", time:"0500"},
+			{location:"Eastern Thanalan", type:"Q", time:"0515"},
+			{location:"Eastern la Noscea", type:"H", time:"0530"},
+			{location:"East Shroud", type:"H", time:"0545"},
+			{location:"Mor Dhona", type:"L", time:"0559"},
+			{location:"South Shroud", type:"Q", time:"0600"},
+			{location:"Lower la Noscea", type:"H", time:"0615"},
+			{location:"Central Shroud", type:"L", time:"0630"},
+			{location:"Upper la Noscea", type:"L", time:"0700"},
+			{location:"Western la Noscea", type:"H", time:"0800"},
+			{location:"Eastern Thanalan", type:"M", time:"0900"},
+			{location:"Mor Dhona", type:"L", time:"0915"},
+			{location:"Coerthas Central Highland", type:"L", time:"0930"},
+			{location:"Middle la Noscea", type:"L", time:"0945"},
+			{location:"Eastern la Noscea", type:"L", time:"1000"},
+			{location:"Central Shroud", type:"L", time:"1030"},
+			{location:"Mor Dhona", type:"Q", time:"1300"},
+			{location:"Eastern Thanalan", type:"H", time:"1315"},
+			{location:"Eastern la Noscea", type:"H", time:"1330"},
+			{location:"Coerthas Central Highland", type:"L", time:"1345"},
+			{location:"The Dravanian Forelands", type:"H", time:"1400"},
+			{location:"Northern Thanalan", type:"M", time:"1700"},
+			{location:"Mor Dhona", type:"Q", time:"1715"},
+			{location:"Eastern la Noscea", type:"Q", time:"1730"},
+			{location:"Coerthas Central Highland", type:"L", time:"1745"},
+			{location:"Lower la Noscea", type:"M", time:"1800"},
+			{location:"Middle la Noscea", type:"Q", time:"1900"},
+			{location:"Coerthas Central Highland", type:"Q", time:"2100"},
+			{location:"Mor Dhona", type:"Q", time:"2130"},
+			{location:"East Shroud", type:"H", time:"2115"}
+		];
+
+		var listNodeDom = document.querySelector(".listNode");
+		listnode.forEach((el)=>{
+			var hour = el.time.substring(0,2);
+			var hourp3 = ((parseInt(hour)+3)%24+"").padStart(2,"0"); 
+			var minute = el.time.substring(2);
+			var timetext = hour+":"+minute+" <span class='to'>to</span> "+hourp3+":"+minute;
+
+			listNodeDom.innerHTML += 
+			`<li class="node" data-t="`+el.time+`">
+				<div class='isActual'></div>
+				<div class='icon'><img src="assets/`+el.type+`.png"/></div>
+				<div class='loca'>`+el.location+`</div>
+				<div class='time'>`+timetext+`</div>
+				<div class='left'>`+""+`</div>
+			</li>`;
+		});
+	</script>
+	<script>
+		function getEorzeaTime(precision = false){
+			var localEpoch = (new Date()).getTime();
+			var epoch = localEpoch * 20.571428571428573;
+			var minutes = (epoch / (1000 * 60)) % 60;
+			if(!precision){
+				minutes = parseInt(minutes);	
+			}
+			var hours = parseInt((epoch / (1000 * 60 * 60)) % 24);
+			return {h:hours,m:minutes};
+		}
+		function normalizeTime(h,m){
+			return h+(m/60);
+		}
+
+		function update(){
+			var et = getEorzeaTime();
+			var etdom = document.querySelector(".eorzeaTime");
+			var str = (et.h+"").padStart(2,"0")+":"+(et.m+"").padStart(2,"0");
+			if(etdom.innerHTML != str){
+				etdom.innerHTML = str;
+			}
+			var lt = new Date();
+			document.querySelector(".currentTime").innerHTML = (""+lt.getHours()).padStart(2,"0")+":"+(""+lt.getMinutes()).padStart(2,"0");
+
+			document.querySelectorAll(".node").forEach((el)=>{
+				var nodeT = el.dataset.t;
+				var h = parseInt(nodeT.substring(0,2));
+				var m = parseInt(nodeT.substring(2));
+				var etnorm = normalizeTime(et.h,et.m);
+				var minnode = normalizeTime(h,m);
+				var maxnode = normalizeTime(h+3,m);
+				if(etnorm >= minnode && etnorm < maxnode){
+					el.classList.add("current");
+					var etPrecise = getEorzeaTime(true);
+					var normdiff = (normalizeTime(etPrecise.h,etPrecise.m)-minnode);
+					var hdiff = Math.floor(normdiff);
+					var elapsed = Math.round(525.06-(hdiff*60+((normdiff-hdiff)*60))*2.917);
+					var melapsed = Math.floor(elapsed/60);
+					var selapsed = elapsed%60;
+
+					el.querySelector(".left").innerHTML = (""+melapsed).padStart(2,"0")+"m"+(""+selapsed).padStart(2,"0")+"s left";
+				}else{
+					el.classList.remove("current");
+					el.querySelector(".left").innerHTML="";
+				}
+			});
+		}
+
+		setInterval(()=>{
+			update();
+		},1000);
+		update();
+	</script>
+
+
+</body>
+</html>
